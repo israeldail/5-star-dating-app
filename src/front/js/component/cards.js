@@ -1,18 +1,20 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Link } from "react-router-dom";
+
 
 export const Cards = () => {
   return (
     <Card style={{ width: "18rem" }}>
       <Card.Img variant="top" src="holder.js/100px180" />
       <Card.Body>
-        <Card.Title>Card Title</Card.Title>
+        <Card.Title>Andrew</Card.Title>
         <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
+          5'9 but 6ft on a good day 
         </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
+        <Link to = "/Status"><Button variant="primary">Read reviews</Button></Link>
       </Card.Body>
     </Card>
   );

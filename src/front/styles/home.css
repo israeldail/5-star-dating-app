@@ -6,10 +6,16 @@
     on that page only (the ones not reused in other pages).
 */
 
-.footer {
 
+#cards {
+    margin-top: 10%;
 }
 
-.contianer {
-    
+body {
+    background-color: #F4DDC7;
+}
+
+.footer {
+    background-color: #D98B8B;
+    margin-top: 5%;
 }
