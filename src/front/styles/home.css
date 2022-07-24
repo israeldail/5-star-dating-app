@@ -9,6 +9,7 @@
 
 #cards {
     margin-top: 10%;
+    
 }
 
 body {
@@ -18,4 +19,8 @@ body {
 .footer {
     background-color: #D98B8B;
     margin-top: 5%;
+}
+
+.logo{
+    font-family: 'Edu VIC WA NT Beginner', cursive;
 }

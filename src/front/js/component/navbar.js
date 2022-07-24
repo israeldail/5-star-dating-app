@@ -16,7 +16,7 @@ export const Navbar1 = () => {
           <Navbar.Brand
             style={{ color: "black", fontSize: 50, justify: "center" }}
           >
-            Navbar scroll
+            <span className="logo">5 Star Dating</span>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
         </div>
