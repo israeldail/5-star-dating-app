@@ -12,11 +12,10 @@ api = Blueprint('api', __name__)
 @api.route('/user', methods=['GET'])
 def get_user():
 
-    response_body = {
-        "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
-    }
+     users = User.query.all()
+     all_users = list(map(lambda x: x.serialize(), users))
 
-    return jsonify(response_body), 200
+     return jsonify(all_users), 200
 
 
 @api.route('/profile', methods=['GET'])

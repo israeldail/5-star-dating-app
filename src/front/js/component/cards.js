@@ -14,8 +14,7 @@ export const Cards = (props) => {
   const { store, actions } = useContext(Context);
   return (
     <Fragment>
-      
-      {store.getProfile.map((profile, i) => {
+      {store.profile.map((profile, i) => {
         return (
           <Carousel style={{ width: "17rem", height: "25rem", color: "white" }}>
             <Carousel.Item>
@@ -25,7 +24,7 @@ export const Cards = (props) => {
                   src="https://www.criticschoice.com/wp-content/uploads/avatars/610/58b5890a50cfc-bpfull.jpg"
                 />
                 <Card.Body>
-                  <Card.Title>{store.profile.name}</Card.Title>
+                  <Card.Title>{profile.name}</Card.Title>
                   <Card.Text>5'9 but 6ft on a good day</Card.Text>
                   <div className="d-flex justify-content-evenly float-left">
                     <Link to="/Status">
