@@ -25,3 +25,11 @@ def get_profile():
     all_profiles = list(map(lambda x: x.serialize(), profile))
 
     return jsonify(all_profiles), 200
+
+@api.route('/profile/<int:id>', methods=['GET'])
+def get_profile_id(id):
+
+    profile = Profile.query.filter_by(id=id).first()
+    
+
+    return jsonify(profile.serialize()), 200

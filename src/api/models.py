@@ -48,6 +48,7 @@ class Profile(db.Model):
 
     def serialize(self):
         return {
+            "id": self.id,
             "name": self.name,
             "image": self.image_url,
             "bio": self.bio,

@@ -10,7 +10,7 @@ import { NavDropdown } from "react-bootstrap";
 
 export const Navbar1 = () => {
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="light" expand="lg" className="navbar">
       <Container fluid style={{ background: "#D98B8B" }}>
         <div className="container">
           <Navbar.Brand

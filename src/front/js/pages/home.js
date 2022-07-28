@@ -12,9 +12,7 @@ export const Home = () => {
     <div className="body">
       
       <div id="cards" className="d-flex justify-content-evenly">
-        <Cards />
-        <Cards />
-        <Cards />
+        {/* <Cards /> */}
       </div>
     </div>
   );
