@@ -16,6 +16,10 @@
     margin-top: 15%;
 }
 
+#stars {
+    padding: 10px;
+}
+
 body {
     background-color: #F4DDC7;
 }
@@ -37,3 +41,4 @@ body {
 .statuscard {
     margin-top: 20%;
 }
+

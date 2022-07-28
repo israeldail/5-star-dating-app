@@ -30,7 +30,16 @@ export const Cards = (props) => {
                     <Card.Title>{profile.name}</Card.Title>
                     {/* <div><i class="fa-solid fa-star"></i></div> */}
                     <Card.Text>{profile.bio}</Card.Text>
-                    <Card.Text>WT0frqkhi8UFVmO5dbcSdw8ZS61Vmcs29iSZ3HDlK34OTlUaQVjxGLHyknFFEYIAGKKKACiEUV4AGbOAxLUqiOu9GB8DqJqiOnH0dTo9M7KxS16KVENwwB8R</Card.Text>
+                    <Card.Text>
+                      WT0frqkhi8UFVmO5dbcSdw8ZS61Vmcs29iSZ3HDlK34OTlUaQVjxGLHyknFFEYIAGKKKACiEUV4AGbOAxLUqiOu9GB8DqJqiOnH0dTo9M7KxS16KVENwwB8R
+                    </Card.Text>
+                    <div id="stars" className="d-flex">
+                      <div><i class="fa-solid fa-star"></i></div>
+                      <div><i class="fa-solid fa-star"></i></div>
+                      <div><i class="fa-solid fa-star"></i></div>
+                      <div><i class="fa-solid fa-star"></i></div>
+                      <div><i class="fa-solid fa-star"></i></div>
+                    </div>
                     <div className="d-flex justify-content-evenly float-left">
                       <Link to="/status">
                         <Button variant="primary">Read reviews</Button>
@@ -50,7 +59,16 @@ export const Cards = (props) => {
                   <Card.Body>
                     <Card.Title>{profile.name}</Card.Title>
                     <Card.Text>{profile.bio}</Card.Text>
-                    <Card.Text>WT0frqkhi8UFVmO5dbcSdw8ZS61Vmcs29iSZ3HDlK34OTlUaQVjxGLHyknFFEYIAGKKKACiEUV4AGbOAxLUqiOu9GB8DqJqiOnH0dTo9M7KxS16KVENwwB8R</Card.Text>
+                    <Card.Text>
+                      WT0frqkhi8UFVmO5dbcSdw8ZS61Vmcs29iSZ3HDlK34OTlUaQVjxGLHyknFFEYIAGKKKACiEUV4AGbOAxLUqiOu9GB8DqJqiOnH0dTo9M7KxS16KVENwwB8R
+                    </Card.Text>
+                    <div id="stars" className="d-flex">
+                      <div><i class="fa-solid fa-star"></i></div>
+                      <div><i class="fa-solid fa-star"></i></div>
+                      <div><i class="fa-solid fa-star"></i></div>
+                      <div><i class="fa-solid fa-star"></i></div>
+                      <div><i class="fa-solid fa-star"></i></div>
+                    </div>
                     <div className="d-flex justify-content-evenly float-left">
                       <Link to="/status">
                         <Button variant="primary">Read reviews</Button>
@@ -63,17 +81,24 @@ export const Cards = (props) => {
                 <Carousel.Caption></Carousel.Caption>
               </Carousel.Item>
               <Carousel.Item>
-                <Card style={{ width: "18rem", background: "black" }}>
+                <Card style={{ width: "18rem", background: "black", height: "auto" }}>
                   <Card.Img
                     variant="top"
                     src="https://yt3.ggpht.com/ytc/AKedOLTPFraXHuDi-6zpBkog_36Mt2PqL0EwOoQU_fneeg=s900-c-k-c0x00ffffff-no-rj"
                   />
                   <Card.Body>
                     <Card.Title>{profile.name}</Card.Title>
+                    <Card.Text>{profile.bio}</Card.Text>
                     <Card.Text>
-                    {profile.bio}
+                      WT0frqkhi8UFVmO5dbcSdw8ZS61Vmcs29iSZ3HDlK34OTlUaQVjxGLHyknFFEYIAGKKKACiEUV4AGbOAxLUqiOu9GB8DqJqiOnH0dTo9M7KxS16KVENwwB8R
                     </Card.Text>
-                    <Card.Text>WT0frqkhi8UFVmO5dbcSdw8ZS61Vmcs29iSZ3HDlK34OTlUaQVjxGLHyknFFEYIAGKKKACiEUV4AGbOAxLUqiOu9GB8DqJqiOnH0dTo9M7KxS16KVENwwB8R</Card.Text>
+                    <div id="stars" className="d-flex">
+                      <div><i class="fa-solid fa-star"></i></div>
+                      <div><i class="fa-solid fa-star"></i></div>
+                      <div><i class="fa-solid fa-star"></i></div>
+                      <div><i class="fa-solid fa-star"></i></div>
+                      <div><i class="fa-solid fa-star"></i></div>
+                    </div>
                     <div className="d-flex justify-content-evenly float-left">
                       <Link to="/status">
                         <Button variant="primary">Read reviews</Button>
@@ -89,6 +114,6 @@ export const Cards = (props) => {
           );
         })}
       </Fragment>
-     </div>
+    </div>
   );
 };
