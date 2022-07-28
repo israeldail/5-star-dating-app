@@ -8,7 +8,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       // Use getActions to call a function within a fuction
       getProfile: async () => {
         let BACKEND_URL =
-          "https://3001-israeldail-5stardatinga-ma8op01qg07.ws-us54.gitpod.io";
+          "https://3001-israeldail-5stardatinga-gd8m6chyr1a.ws-us57.gitpod.io";
         try {
           // fetching data from the backend
           const resp = await fetch(BACKEND_URL + "/api/profile");
