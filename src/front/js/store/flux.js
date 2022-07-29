@@ -7,11 +7,9 @@ const getState = ({ getStore, getActions, setStore }) => {
     actions: {
       // Use getActions to call a function within a fuction
       getProfile: async () => {
-        let BACKEND_URL =
-          "https://3001-israeldail-5stardatinga-5bwzkz0n44u.ws-us54.gitpod.io";
         try {
           // fetching data from the backend
-          const resp = await fetch(BACKEND_URL + "/api/profile");
+          const resp = await fetch(process.env.BACKEND_URL + "/api/profile");
           if (resp.ok) {
             const data = await resp.json();
             console.log(data);

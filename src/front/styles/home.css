@@ -22,12 +22,12 @@
 
 
 #button1 {
-    z-index: 998;
+    /* z-index: 998; */
     position: relative;
 }
 
 #button2 {
-    z-index: 999;
+    /* z-index: 999; */
     
 }
 
