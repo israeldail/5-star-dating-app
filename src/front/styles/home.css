@@ -20,6 +20,17 @@
     padding: 10px;
 }
 
+
+#button1 {
+    z-index: 998;
+    position: relative;
+}
+
+#button2 {
+    z-index: 999;
+    
+}
+
 body {
     background-color: #F4DDC7;
 }

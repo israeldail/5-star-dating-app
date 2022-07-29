@@ -41,12 +41,12 @@ export const Cards = (props) => {
                       <div><i class="fa-solid fa-star"></i></div>
                       <div><i class="fa-solid fa-star"></i></div>
                     </div>
-                    <div className="d-flex justify-content-evenly float-left">
+                    <span className="d-flex justify-content-evenly float-left">
                       <Link to="/status">
-                        <Button variant="primary">Read reviews</Button>
+                        <Button id="button1" variant="primary">Read reviews</Button>
                       </Link>
-                      <Button variant="primary">Thumbs Up</Button>
-                    </div>
+                      <Button id="button2" variant="primary">Thumbs Up</Button>
+                    </span>
                     </div>
                   </Card.Body>
                 </Card>
@@ -73,12 +73,12 @@ export const Cards = (props) => {
                       <div><i class="fa-solid fa-star"></i></div>
                       <div><i class="fa-solid fa-star"></i></div>
                     </div>
-                    <div className="d-flex justify-content-evenly float-left">
+                    <span className="d-flex justify-content-evenly float-left">
                       <Link to="/status">
-                        <Button variant="primary">Read reviews</Button>
+                        <Button id="button1" variant="primary">Read reviews</Button>
                       </Link>
-                      <Button variant="primary">Thumbs Up</Button>
-                    </div>
+                      <Button id="button2" variant="primary">Thumbs Up</Button>
+                    </span>
                     </div>
                   </Card.Body>
                 </Card>
@@ -105,12 +105,12 @@ export const Cards = (props) => {
                       <div><i class="fa-solid fa-star"></i></div>
                       <div><i class="fa-solid fa-star"></i></div>
                     </div>
-                    <div className="d-flex justify-content-evenly float-left">
+                    <span className="d-flex justify-content-evenly float-left">
                       <Link to="/status">
-                        <Button variant="primary">Read reviews</Button>
+                        <Button id="button1" variant="primary">Read reviews</Button>
                       </Link>
-                      <Button variant="primary">Thumbs Up</Button>
-                    </div>
+                      <Button id="button2" variant="primary">Thumbs Up</Button>
+                    </span>
                     </div>
                   </Card.Body>
                 </Card>
