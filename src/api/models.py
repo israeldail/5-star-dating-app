@@ -38,10 +38,10 @@ class User(db.Model):
 class Profile(db.Model):
     # __tablename__ = "profile"
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80), unique=True, nullable=False)
-    image_url = db.Column(db.String(120), unique=True, nullable=False)
-    bio = db.Column(db.String(250), unique=True, nullable=False)
-    traits_and_interests = db.Column(db.String(250), unique=True, nullable=False)
+    name = db.Column(db.String(80),  nullable=False)
+    image_url = db.Column(db.String(120),  nullable=False)
+    bio = db.Column(db.String(250),  nullable=False)
+    traits_and_interests = db.Column(db.String(250),  nullable=False)
 
     def __repr__(self):
         return f'<Profile {self.name}>'

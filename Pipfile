@@ -17,6 +17,7 @@ flask-cors = "*"
 gunicorn = "*"
 cloudinary = "*"
 flask-admin = "*"
+tqdm = "*"
 
 [requires]
 python_version = "3.8"
@@ -29,3 +30,4 @@ local="heroku local"
 upgrade="flask db upgrade"
 reset_db="bash ./docs/assets/reset_migrations.bash"
 deploy="echo 'Please follow this 3 steps to deploy: https://github.com/4GeeksAcademy/flask-rest-hello/blob/master/README.md#deploy-your-website-to-heroku' "
+user_api="python src/userapi.py"
