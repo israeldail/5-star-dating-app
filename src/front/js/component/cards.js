@@ -21,42 +21,42 @@ export const Cards = (props) => {
               <Carousel.Item key={i}>
                 <Card
                   style={{
-                    width: "18rem",
+                    width: "35rem",
                     background: "black",
-                    maxHeight: "45rem",
+                    maxHeight: "55rem",
                   }}
                 >
                   <Card.Img
                     variant="top"
-                    src="https://www.criticschoice.com/wp-content/uploads/avatars/610/58b5890a50cfc-bpfull.jpg"
+                    src={profile.image}
                   />
                   <Card.Body>
                     <Card.Title>{profile.name}</Card.Title>
                     {/* <div><i class="fa-solid fa-star"></i></div> */}
                     <Card.Text>{profile.bio}</Card.Text>
                     <Card.Text>
-                      WT0frqkhi8UFVmO5dbcSdw8ZS61Vmcs29iSZ3HDlK34OTlUaQVjxGLHyknFFEYIAGKKKACiEUV4AGbOAxLUqiOu9GB8DqJqiOnH0dTo9M7KxS16KVENwwB8R
+                      {profile.bio}
                     </Card.Text>
                     <div className="bottomcontainer">
                       <div id="stars" className="d-flex">
                         <div>
-                          <i class="fa-solid fa-star"></i>
+                          <i className="fa-solid fa-star"></i>
                         </div>
                         <div>
-                          <i class="fa-solid fa-star"></i>
+                          <i className="fa-solid fa-star"></i>
                         </div>
                         <div>
-                          <i class="fa-solid fa-star"></i>
+                          <i className="fa-solid fa-star"></i>
                         </div>
                         <div>
-                          <i class="fa-solid fa-star"></i>
+                          <i className="fa-solid fa-star"></i>
                         </div>
                         <div>
-                          <i class="fa-solid fa-star"></i>
+                          <i className="fa-solid fa-star"></i>
                         </div>
                       </div>
                       <span className="d-flex justify-content-evenly float-left">
-                        <Link to="/status">
+                        <Link to={`/status/${profile.id}`}>
                           <Button id="button1" variant="primary">
                             Read reviews
                           </Button>
