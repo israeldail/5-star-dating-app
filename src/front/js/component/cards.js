@@ -37,22 +37,22 @@ export const Cards = (props) => {
                     <Card.Text>
                       {profile.bio}
                     </Card.Text>
-                    <div className="bottomcontainer">
+                    <div id="bottomcontainer">
                       <div id="stars" className="d-flex">
                         <div>
-                          <i className="fa-solid fa-star"></i>
+                          <i id="star1" className="fa-solid fa-star"></i>
                         </div>
                         <div>
-                          <i className="fa-solid fa-star"></i>
+                          <i id="star2" className="fa-solid fa-star"></i>
                         </div>
                         <div>
-                          <i className="fa-solid fa-star"></i>
+                          <i id="star3" className="fa-solid fa-star"></i>
                         </div>
                         <div>
-                          <i className="fa-solid fa-star"></i>
+                          <i id="star4" className="fa-solid fa-star"></i>
                         </div>
                         <div>
-                          <i className="fa-solid fa-star"></i>
+                          <i id="star5" className="fa-solid fa-star"></i>
                         </div>
                       </div>
                       <span className="d-flex justify-content-evenly float-left">

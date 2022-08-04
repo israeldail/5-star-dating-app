@@ -11,6 +11,8 @@ import { Navbar1 } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Cards } from "./component/cards";
 import { Status } from "./pages/statuspage";
+import { IntroductionPage } from "./pages/introduction";
+import { RegistrationPage } from "./pages/registration";
 
 //create your first component
 const Layout = () => {
@@ -23,9 +25,10 @@ const Layout = () => {
       <BrowserRouter basename={basename}>
         <ScrollToTop>
           <Navbar1 />
-          <Cards />
 
           <Routes>
+            <Route element={<IntroductionPage />} path="/introduction"/>
+            <Route element={<RegistrationPage />} path="/registration"/>
             <Route element={<Home />} path="/" />
             <Route element={<Demo />} path="/demo" />
             <Route element={<Single />} path="/single/:theid" />
