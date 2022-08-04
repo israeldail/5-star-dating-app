@@ -13,6 +13,7 @@ import { Cards } from "./component/cards";
 import { Status } from "./pages/statuspage";
 import { IntroductionPage } from "./pages/introduction";
 import { RegistrationPage } from "./pages/registration";
+import { Profile } from "./pages/profile";
 
 //create your first component
 const Layout = () => {
@@ -27,6 +28,7 @@ const Layout = () => {
           <Navbar1 />
 
           <Routes>
+            {/* <Route element= {<ProfilePage/>} path="/profile"/> */}
             <Route element={<IntroductionPage />} path="/introduction"/>
             <Route element={<RegistrationPage />} path="/registration"/>
             <Route element={<Home />} path="/" />

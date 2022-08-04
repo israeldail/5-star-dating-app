@@ -30,8 +30,8 @@
 }
 
 #emailandpass {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 #sex {
@@ -41,11 +41,10 @@
 }
 
 #joinSection {
-    margin-top: 12rem;
-    display: flex;
-    justify-content: space-evenly;
+  margin-top: 12rem;
+  display: flex;
+  justify-content: space-evenly;
 }
-
 
 #sexButton {
   margin-top: 5rem;
@@ -54,21 +53,17 @@
 }
 
 #genderButtonLeft {
-
-    width: 18rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    
+  width: 18rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-
 #genderButtonRight {
-    width: 18rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    
+  width: 18rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 #cards {
@@ -159,4 +154,66 @@ body {
 
 .statuscard {
   margin-top: 20%;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+.hero {
+  height: 100%;
+  width: 100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+}
+.form-box {
+  width: 380px;
+  height: 480px;
+  position: relative;
+  margin: 6% auto;
+  background: white;
+  padding: 5px;
+}
+.Button-box {
+  width: 220px;
+  margin: 35px auto;
+  position: relative;
+  box-shadow: 0px 0px 20px 9px #ff61241f;
+  border-radius: 30px;
+}
+.toggle-btn {
+  padding: 10px 30px;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  outline: none;
+  position: relative;
+}
+#button-color {
+  top: 0;
+  left: 0;
+  poistion: absolute;
+  width: 110%;
+  height: 100%;
+  background: liner-gradient(to right, #ff105f, #ffad06);
+  border-radius: 30px;
+  transition: 0.5seconds;
+}
+.input-group {
+  top: 180px;
+  position: absolute;
+  width: 100%;
+  transition: 0.5seconds;
+}
+.input-field {
+  width: 100%;
+  padding: 10px 0;
+  margin: 5x 0;
+  border-left: 0;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 1px soild #999;
+  outline: none;
+  background: transparent;
 }
