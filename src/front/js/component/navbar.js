@@ -29,7 +29,7 @@ export const Navbar1 = () => {
             navbarScroll
           >
             <Button id="navButton" href="#action1">
-              {location.pathname === "/introduction" ? "Login" : "Inbox"}
+              {location.pathname === "/introduction" || location.pathname === "/registration" ? "Login" : "Inbox"}
             </Button>
             
               <form id="emailandpass">
