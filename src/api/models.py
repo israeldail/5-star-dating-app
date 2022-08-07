@@ -22,14 +22,13 @@ class Profile(db.Model):
     first_name = db.Column(db.String(80),  nullable=False)
     last_name = db.Column(db.String(80),  nullable=False)
     password = db.Column(db.String(80), nullable=False)
-    gender = db.Column(db.String(80),db.ForeignKey('gender.id'))
+    gender_id = db.Column(db.Integer, db.ForeignKey('gender.id'))
     image_url = db.Column(db.String(120), nullable=False)
     bio = db.Column(db.String(250),  nullable=False)
     traits_and_interests = db.Column(db.String(250),  nullable=False)
 
     gender_options= db.relationship(
-        "Gender", backref="gender", uselist=False
-        
+        "Gender", backref="gender", uselist=False   
     )
     
     def __repr__(self):
@@ -42,7 +41,7 @@ class Profile(db.Model):
             "first_name": self.first_name,
             "last_name": self.last_name,
             "password": self.password,
-            "gender": self.gender,
+            "gender": self.gender_id,
             "image": self.image_url,
             "bio": self.bio,
             "traits and interests": self.traits_and_interests

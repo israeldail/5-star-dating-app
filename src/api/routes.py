@@ -10,14 +10,27 @@ api = Blueprint('api', __name__)
 
 @api.route("/token", methods=["POST"])
 def create_token():
-    email = request.json.get("email", Profile)
-    password = request.json.get("password", Profile)
-    if email != email or password != password:
-        return jsonify({"msg": "Wrong username or password"}), 401
+    
 
     access_token = create_access_token(identity=email)
     return jsonify(access_token=access_token)
 
+@api.route('/login', methods=['POST'])
+def login():
+    data = request.get_json()
+    # email = request.json.get("email")
+    # password = request.json.get("password")
+    if "email" not in data or data["email"]:
+        raise APIException('Email Not Found', status_code=400)
+    if "password" not in data or data["password"]:
+        raise APIException('Password Not Found', status_code=400)
+
+    profile =  Profile.query.filter_by(email=data["email"]).first()
+    if profile == None or data["password"] != profile.password or data['email'] != profile.email:
+        return "Email or Password is not correct"
+    else:
+        return "Success"
+    return "Logged In!"
 
 @api.route('/profile', methods=['GET'])
 def get_profile():
@@ -35,39 +48,23 @@ def get_profile_id(id):
 
     return jsonify(profile.serialize()), 200
 
+
+@api.route('/signup',methods=['GET'])
+def get_signup():
+    users = Profile.query.all()
+    userlist = list(map(lambda x: x.serialize(), users))
+    return jsonify(userlist), 200
+
+
 @api.route('/signup', methods=['POST'])
 def handle_signup():
-    email = request.json.get('email')
-    first_name = request.json.get('first_name')
-    last_name = request.json.get('last_name')
-    password = request.json.get('password')
-    
-   
-    if not email:
-        return 'You need to enter an email',400
-    if not first_name:
-        return 'You need to enter an fname',400
-    if not last_name:
-        return 'You need to enter an lname',400
-    if not password:
-        return 'You need to enter a password', 400
-
-    # check_user = User.query.filter_by(email=email)
-    check_user = Profile.query.filter_by(email=email).first()
-
-    if check_user :
-        return jsonify({
-            'msg': 'The email address already exists. Please login to your account to continue.'
-        }),409
-
-    profile = Profile(email=email, first_name=first_name, last_name=last_name, password=password, gender=gender, is_active=True)
-
+    response_body = request.get_json()
+    profile = Profile(email=response_body["email"], first_name=response_body["first_name"], last_name=response_body["last_name"], password=response_body["password"], image_url=response_body["image_url"], bio=response_body["bio"], traits_and_interests=response_body["traits_and_interests"])
     db.session.add(profile)
     db.session.commit()
    
     payload = {
         'msg': 'Your account has been registered successfully.',
-        'profile': profile.serialize()
     }
 
     return jsonify(payload), 200
