@@ -10,9 +10,13 @@ api = Blueprint('api', __name__)
 
 @api.route("/token", methods=["POST"])
 def create_token():
+    request_body_user = request.get_json()
+    userLogin = Profile(email=request_body_user["email"], password=request_body_user["password"])
+    if request_body_user["email"] != request_body_user["email"] or request_body_user["password"] != request_body_user["password"]:
+        return jsonify({"msg": "Bad email or password"}), 401
     
 
-    access_token = create_access_token(identity=email)
+    access_token = create_access_token(identity=request_body_user["email"])
     return jsonify(access_token=access_token)
 
 @api.route('/login', methods=['POST'])

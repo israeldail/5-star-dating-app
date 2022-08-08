@@ -16,7 +16,7 @@ export const Cards = (props) => {
     <div className="d-flex justify-content-evenly" id="threecards">
       <Fragment>
         <Carousel style={{ width: "auto", maxHeight: "35rem", color: "white" }}>
-          {store.profile.map((profile, i) => {
+          {store.profiles.map((profile, i) => {
             return (
               <Carousel.Item key={i}>
                 <Card

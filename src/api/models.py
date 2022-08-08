@@ -1,4 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.dialects.postgresql import UUID
+import uuid
 
 db = SQLAlchemy()
 
@@ -16,7 +18,7 @@ db = SQLAlchemy()
 #FK on one column to user table and another FK points to photos table
 
 class Profile(db.Model):
-    # __tablename__ = "profile"
+    __tablename__ = "profile"
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
     first_name = db.Column(db.String(80),  nullable=False)
@@ -26,6 +28,7 @@ class Profile(db.Model):
     image_url = db.Column(db.String(120), nullable=False)
     bio = db.Column(db.String(250),  nullable=False)
     traits_and_interests = db.Column(db.String(250),  nullable=False)
+    
 
     gender_options= db.relationship(
         "Gender", backref="gender", uselist=False   
@@ -61,8 +64,19 @@ class Gender(db.Model):
         return self.name 
 
 
-# class Ratings(db.Model):
-#     __tablename__ = "ratings"
+class Date(db.Model):
+    __tablename__ = "date"
+    id = db.Column(db.Integer, primary_key=True)
+    p1_id = db.Column(db.Integer, db.ForeignKey('profile.id'))
+    p2_id = db.Column(db.Integer, db.ForeignKey('profile.id'))
+    p1 = db.relationship('Profile', foreign_keys=[p1_id], backref="dates_created")
+    p2 = db.relationship('Profile', foreign_keys=[p2_id], backref="dates_participated")
+    p1_rating = db.Column(db.Integer, nullable=True)
+    p2_rating = db.Column(db.Integer, nullable=True)
+    p1_text_reviews =  db.Column(db.Text, nullable=True)
+    p2_text_reviews =  db.Column(db.Text, nullable=True)
+    uuid = db.Column(UUID(), default=uuid.uuid4)
+
 
 
 # class Matches(db.Model):

@@ -12,8 +12,7 @@ with app.app_context():
             email=user['email'],
             first_name=user['name']['first'],
             last_name=user['name']['last'],
-            password=user ['password'],
-            gender=user['gender'],
+            password=user['login']['password'],
             image_url=user['picture']['large'], 
             bio="this is a random bio", 
             traits_and_interests="random")

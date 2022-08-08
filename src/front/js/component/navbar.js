@@ -33,14 +33,14 @@ export const Navbar1 = () => {
             </Button>
             
               <form id="emailandpass">
-                <label style={{ marginLeft: "2rem" }} for="email"></label>
+                <label style={{ marginLeft: "2rem" }}></label>
                 <input
                   type="text"
                   id="email"
                   name="email"
                   placeholder="e-mail"
                 ></input>
-                <label style={{ marginLeft: "2rem" }} for="password"></label>
+                <label style={{ marginLeft: "2rem" }}></label>
                 <input
                   type="text"
                   id="password"

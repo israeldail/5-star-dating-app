@@ -38,7 +38,6 @@ export const Status = (props) => {
           </div>
         </Card.Body>
       </Card>
-      );
     </div>
   );
 };
