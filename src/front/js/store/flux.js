@@ -1,9 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
-      getProfile: [],
-      profile: [],
-      getPerson: [],
+      profiles: [],
       person: [],
     },
     actions: {
@@ -11,11 +9,11 @@ const getState = ({ getStore, getActions, setStore }) => {
       getProfile: async () => {
         try {
           // fetching data from the backend
-          const resp = await fetch(process.env.BACKEND_URL + "/api/profile");
+          const resp = await fetch(process.env.BACKEND_URL + "/api/profiles");
           if (resp.ok) {
             const data = await resp.json();
             console.log(data);
-            setStore({ profile: data });
+            setStore({ profiles: data });
             // don't forget to return something, that is how the async resolves
             return data;
           }
@@ -26,7 +24,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       getPerson: async (id) => {
         try {
-          const resp = await fetch(process.env.BACKEND_URL + `/api/profile/${id}`);
+          const resp = await fetch(
+            process.env.BACKEND_URL + `/api/profile/${id}`
+          );
           if (resp.ok) {
             const data = await resp.json();
             console.log(data);

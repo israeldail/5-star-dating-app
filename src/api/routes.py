@@ -18,35 +18,32 @@ def create_token():
 @api.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
+
     # email = request.json.get("email")
     # password = request.json.get("password")
-    if "email" not in data or data["email"]:
-        raise APIException('Email Not Found', status_code=400)
-    if "password" not in data or data["password"]:
-        raise APIException('Password Not Found', status_code=400)
-
+    if "email" not in data :
+        raise APIException('Email Not Found in request', status_code=400)
+    if "password" not in data:
+        raise APIException('Password Not Found in request', status_code=400)
+    
     profile =  Profile.query.filter_by(email=data["email"]).first()
-    if profile == None or data["password"] != profile.password or data['email'] != profile.email:
-        return "Email or Password is not correct"
-    else:
-        return "Success"
-    return "Logged In!"
 
-@api.route('/profile', methods=['GET'])
-def get_profile():
+    if profile is None :
+        raise APIException('Profile does not exist, please check credentials', status_code=404)
+    if data["password"] != profile.password:
+        raise APIException('Password is incorrect', status_code=401)
 
-    profile = Profile.query.all()
-    all_profiles = list(map(lambda x: x.serialize(), profile))
+
+    return jsonify(profile.serialize()), 200
+
+@api.route('/profiles', methods=['GET'])
+def get_profiles():
+
+    profiles = Profile.query.all()
+    all_profiles = list(map(lambda x: x.serialize(), profiles))
 
     return jsonify(all_profiles), 200
 
-@api.route('/profile/<int:id>', methods=['GET'])
-def get_profile_id(id):
-
-    profile = Profile.query.filter_by(id=id).first()
-    
-
-    return jsonify(profile.serialize()), 200
 
 
 @api.route('/signup',methods=['GET'])
