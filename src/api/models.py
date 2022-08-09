@@ -20,14 +20,14 @@ db = SQLAlchemy()
 class Profile(db.Model):
     __tablename__ = "profile"
     id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    first_name = db.Column(db.String(80),  nullable=False)
-    last_name = db.Column(db.String(80),  nullable=False)
-    password = db.Column(db.String(80), nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=True)
+    first_name = db.Column(db.String(80),  nullable=True)
+    last_name = db.Column(db.String(80),  nullable=True)
+    password = db.Column(db.String(80), nullable=True)
     gender_id = db.Column(db.Integer, db.ForeignKey('gender.id'))
-    image_url = db.Column(db.String(120), nullable=False)
-    bio = db.Column(db.String(250),  nullable=False)
-    traits_and_interests = db.Column(db.String(250),  nullable=False)
+    image_url = db.Column(db.String(120), nullable=True)
+    bio = db.Column(db.String(250),  nullable=True)
+    traits_and_interests = db.Column(db.String(250),  nullable=True)
     
 
     gender_options= db.relationship(

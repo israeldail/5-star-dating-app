@@ -30,6 +30,9 @@ const injectContext = PassedComponent => {
 			 **/
 			state.actions.getProfile();
 			state.actions.getPerson();
+			state.actions.signup();
+			state.actions.syncTokenFromSessionStorage();
+			state.actions.logout();
 		}, []);
 
 		// The initial value for the context is not null anymore, but the current state of this component,
