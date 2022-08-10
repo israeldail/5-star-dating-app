@@ -140,6 +140,10 @@ body {
 
 .footer {
   background-color: #d98b8b;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  width: 100%;
 }
 
 .logo {
@@ -215,4 +219,12 @@ body {
   border-bottom: 1px soild #999;
   outline: none;
   background: transparent;
+}
+.login-form {
+  max-width: 600px;
+  padding: 25px;
+  margin: 0 auto;
+}
+.login-page {
+  width: 100%;
 }

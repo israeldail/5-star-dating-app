@@ -19,6 +19,8 @@ from flask_jwt_extended import JWTManager
 ENV = os.getenv("FLASK_ENV")
 static_file_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../public/')
 app = Flask(__name__)
+# # Allow CORS requests to this API
+CORS(app)
 app.url_map.strict_slashes = False
 
 app.config["JWT_SECRET_KEY"] = os.environ.get('JWT_SECRET', 'sample key')
@@ -35,8 +37,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 MIGRATE = Migrate(app, db, compare_type = True)
 db.init_app(app)
 
-# Allow CORS requests to this API
-CORS(app)
+
 
 # add the admin
 setup_admin(app)

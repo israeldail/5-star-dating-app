@@ -17,81 +17,91 @@ const getState = ({ getStore, getActions, setStore }) => {
           setStore({ token: token });
       },
 
-
-      signup: async (email,password) => {
+      signup: async (email, password) => {
         const opts = {
           method: "POST",
+          mode: "no-cors",
+
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
           },
           body: JSON.stringify({
             email: email,
             password: password,
-          })
-        }
+          }),
+        };
 
-    
         try {
-          const resp = await fetch("https://3001-israeldail-5stardatinga-r6d0fpp7smk.ws-us59.gitpod.io/api/signup", opts)
-               
-          if(resp.status !== 200) {
-            alert('there was an error signing up')
+          const resp = await fetch(
+            "https://3001-israeldail-5stardatinga-r6d0fpp7smk.ws-us59.gitpod.io/api/signup",
+            opts
+          );
+
+          if (resp.status !== 200) {
+            alert("there was an error signing up");
             return false;
           }
           const data = await resp.json();
-          console.log("this came from the backend", data)
-          setStore({ data: data});
-          
-        } catch(error) {
-          console.error('there has been an error with the sign up')
+          console.log("this came from the backend", data);
+          setStore({ data: data });
+        } catch (error) {
+          console.error("there has been an error with the sign up");
         }
-        },
+      },
 
-        login: async (email, password) => {
-          const opts = {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              email: email,
-              password: password,
-            }),
-          };
-  
-          try {
-            const resp = await fetch(
-              "https://3001-israeldail-5stardatinga-r6d0fpp7smk.ws-us59.gitpod.io/api/token",
-              opts
-            );
-            if (resp.status !== 200) {
-              alert("there has been some error");
-              return false;
-            }
-  
-            const data = await resp.json();
-            console.log("this came from the backend", data);
-            sessionStorage.setItem("token", data.access_token);
-            setStore({ token: data.access_token });
-            return true;
-          } catch (error) {
-            console.error("There has been an error logging in");
+      login: async (email, password) => {
+        const opts = {
+          mode: "no-cors",
+          method: "POST",
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: email,
+            password: password,
+          }),
+        };
+
+        try {
+          const resp = await fetch(
+            "https://3001-israeldail-5stardatinga-ov01fs92q2k.ws-us59.gitpod.io/api/token",
+            opts
+          );
+          console.log(
+            "this came from the backend",
+            resp.body,
+            typeof resp.body
+          );
+          if (resp.status !== 200) {
+            // alert("there has been some error");
+            return false;
           }
-        },
-  
-        logout: () => {
-          sessionStorage.removeItem("token");
-          console.log("Logging out");
-          setStore({ token: null });
-        },
-  
 
+          const data = await resp.json();
+          console.log("this came from the backend", resp.body, typeof data);
+          sessionStorage.setItem("token", data.access_token);
+          setStore({ token: data.access_token });
+          return true;
+        } catch (error) {
+          console.error("There has been an error logging in");
+          throw error;
+        }
+      },
 
+      logout: () => {
+        sessionStorage.removeItem("token");
+        console.log("Logging out");
+        setStore({ token: null });
+      },
 
       getProfile: async () => {
         try {
           // fetching data from the backend
-          const resp = await fetch("https://3001-israeldail-5stardatinga-r6d0fpp7smk.ws-us59.gitpod.io/api/profiles");
+          const resp = await fetch(
+            "https://3001-israeldail-5stardatinga-ov01fs92q2k.ws-us59.gitpod.io/api/profiles"
+          );
           if (resp.ok) {
             const data = await resp.json();
             console.log(data);
@@ -104,10 +114,14 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
-      getPerson: async (id) => {
+      getPerson: async (id = 1) => {
         try {
           const resp = await fetch(
-            `https://3001-israeldail-5stardatinga-r6d0fpp7smk.ws-us59.gitpod.io/api/profile/1`
+            `https://3001-israeldail-5stardatinga-r6d0fpp7smk.ws-us59.gitpod.io/api/profile/${id}`,
+            {
+              mode: "no-cors",
+              headers: { "Access-Control-Allow-Origin": "*" },
+            }
           );
           if (resp.ok) {
             const data = await resp.json();
