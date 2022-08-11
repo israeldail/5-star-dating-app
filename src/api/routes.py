@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, url_for, Blueprint, make_response
-from api.models import db, Profile
+from api.models import db, Profile, Date
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -10,13 +10,13 @@ api = Blueprint('api', __name__)
 
 @api.route("/", methods=["GET"])
 def index():
-    return " something crazy"
+    return " something crazy", 200
 
 
-@api.route("/token", methods=["POST"])
+@api.route("/token", methods=["GET","POST"])
 def create_token():
 
-    data = request.get_json(force=True)
+    data = request.get_json()
 
     if "email" not in data:
         raise APIException('Email Not Found in request', status_code=400)
@@ -34,11 +34,11 @@ def create_token():
     access_token = create_access_token(identity=data["email"])
     print("just say something")
     print(access_token)
-    response = make_response(
-        jsonify({'message': 'login successfully', 'access_token': access_token}), 200,)
-    response.headers["Content-Type"] = "application/json"
+    # response = make_response(
+    #     jsonify({'message': 'login successfully', 'access_token': access_token}), 200,)
+    # response.headers["Content-Type"] = "application/json"
 
-    return response
+    return jsonify(access_token=access_token), 200
 
 
 @api.route('/profiles', methods=['GET'])
@@ -63,3 +63,46 @@ def handle_signup():
     }
 
     return jsonify(payload), 200
+
+
+@api.route('/profile/<int:profile_id>', methods=['GET'])
+def get_person(profile_id):
+    person = Profile.query.get(profile_id)
+    if person is None:
+        raise APIException("user not found", status_code=404)
+    one_person = person.serialize()
+
+    db.session.commit()
+
+    return(jsonify(one_person)), 200
+
+
+@api.route('/profile/dates', methods=['POST'])
+@jwt_required()
+def get_a_date():
+    active_user = Profile.query.filter_by(email=get_jwt_identity()).first()
+
+    date_request = Date(p1=active_user)
+    db.session.add(date_request)
+    db.session.commit()
+
+    date_request = Date.query.filter_by(p1=active_user).order_by(Date.id.desc()).first()
+    print(date_request.uuid)
+
+    return jsonify(msg="Date created successfully", date_id=date_request.uuid), 200
+
+   
+    
+@api.route('/profile/dates/<string:date_uuid>', methods=['POST'])
+@jwt_required()
+def get_date_uuid(date_uuid):
+    active_user = Profile.query.filter_by(email=get_jwt_identity()).first()
+    new_date = Date.query.filter_by(uuid=date_uuid).first()
+
+    new_date.p2 = active_user
+    db.session.merge(new_date)
+    db.session.commit()
+
+    return jsonify(msg="Date created successfully", date_id=new_date.uuid), 200
+
+    

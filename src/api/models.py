@@ -20,10 +20,10 @@ db = SQLAlchemy()
 class Profile(db.Model):
     __tablename__ = "profile"
     id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(120), unique=True, nullable=True)
+    email = db.Column(db.String(120), unique=True, nullable=False)
     first_name = db.Column(db.String(80),  nullable=True)
     last_name = db.Column(db.String(80),  nullable=True)
-    password = db.Column(db.String(80), nullable=True)
+    password = db.Column(db.String(80), nullable=False)
     gender_id = db.Column(db.Integer, db.ForeignKey('gender.id'))
     image_url = db.Column(db.String(120), nullable=True)
     bio = db.Column(db.String(250),  nullable=True)
@@ -75,7 +75,7 @@ class Date(db.Model):
     p2_rating = db.Column(db.Integer, nullable=True)
     p1_text_reviews =  db.Column(db.Text, nullable=True)
     p2_text_reviews =  db.Column(db.Text, nullable=True)
-    uuid = db.Column(UUID(), default=uuid.uuid4)
+    uuid = db.Column(UUID(as_uuid=True), default=uuid.uuid4)
 
 
 

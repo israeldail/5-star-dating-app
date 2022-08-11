@@ -11,7 +11,7 @@ import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 export const Navbar1 = () => {
-  
+  const { store, actions } = useContext(Context);
   
 
   const token = sessionStorage.getItem("token");
@@ -20,7 +20,12 @@ export const Navbar1 = () => {
 
   const handleClick = () => {
     navigate("/login", { replace: true });
+    
   };
+
+  const handleClick2 = () => {
+    navigate("/login")
+  }
 
   // const handleLogout = () => {
   //   actions.logout();
@@ -49,10 +54,15 @@ export const Navbar1 = () => {
                 Inbox
               </Button>
             )}
-            {/* <button onClick={handleLogout}>logout</button> */}
-            <Button id="navButton" href="#action1" onClick={handleClick}>
-              {token ? "Logout" : "Login"}
-            </Button>
+            { !token ?
+              <Button id="navButton" href="#action1" onClick={handleClick}>
+                Login
+              </Button>
+              :
+              <Button id="navButton" href="#action1" onClick={() => {actions.logout(); handleClick2();}}>Logout</Button>
+                
+            }  
+            
           </Nav>
         </Navbar.Collapse>
       </Container>

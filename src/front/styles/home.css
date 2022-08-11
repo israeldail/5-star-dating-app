@@ -142,7 +142,7 @@ body {
   background-color: #d98b8b;
   bottom: 0;
   left: 0;
-  position: absolute;
+  position: relative;
   width: 100%;
 }
 
@@ -162,7 +162,7 @@ body {
   margin: 0;
   padding: 0;
 }
-.hero {
+/* .hero {
   height: 100%;
   width: 100%;
   background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
@@ -192,7 +192,7 @@ body {
   border: 0;
   outline: none;
   position: relative;
-}
+} */
 #button-color {
   top: 0;
   left: 0;

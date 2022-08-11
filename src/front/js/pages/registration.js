@@ -22,9 +22,9 @@ export const RegistrationPage = () => {
         <form className="form-wrapper">
           <div className="email d-flex flex-column">
             <label className="label">E-MAIL</label>
-            <input className="input" name="email" type="text" onChange={(e) => setEmail(e.target.value)} />
+            <input value={email} className="input" name="email" type="text" onChange={(e) => setEmail(e.target.value)} />
             <label className="label">Password</label>
-            <input className="input" name="password" type="text" onChange={(e) => setPassword(e.target.value)} />
+            <input value={password} className="input" name="password" type="password" onChange={(e) => setPassword(e.target.value)} />
           </div>
           <button className="submit" onClick={handleFormSubmit}>
             Sign Up

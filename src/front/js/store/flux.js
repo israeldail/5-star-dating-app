@@ -20,11 +20,8 @@ const getState = ({ getStore, getActions, setStore }) => {
       signup: async (email, password) => {
         const opts = {
           method: "POST",
-          mode: "no-cors",
-
           headers: {
             "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
           },
           body: JSON.stringify({
             email: email,
@@ -34,7 +31,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         try {
           const resp = await fetch(
-            "https://3001-israeldail-5stardatinga-r6d0fpp7smk.ws-us59.gitpod.io/api/signup",
+            process.env.BACKEND_URL + "/api/signup",
             opts
           );
 
@@ -52,10 +49,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       login: async (email, password) => {
         const opts = {
-          mode: "no-cors",
           method: "POST",
           headers: {
-            "Access-Control-Allow-Origin": "*",
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
@@ -66,7 +61,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         try {
           const resp = await fetch(
-            "https://3001-israeldail-5stardatinga-ov01fs92q2k.ws-us59.gitpod.io/api/token",
+            process.env.BACKEND_URL +"/api/token",
             opts
           );
           console.log(
@@ -86,7 +81,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           return true;
         } catch (error) {
           console.error("There has been an error logging in");
-          throw error;
         }
       },
 
@@ -100,7 +94,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         try {
           // fetching data from the backend
           const resp = await fetch(
-            "https://3001-israeldail-5stardatinga-ov01fs92q2k.ws-us59.gitpod.io/api/profiles"
+            process.env.BACKEND_URL + "/api/profiles"
           );
           if (resp.ok) {
             const data = await resp.json();
@@ -114,14 +108,10 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
-      getPerson: async (id = 1) => {
+      getPerson: async (id) => {
         try {
           const resp = await fetch(
-            `https://3001-israeldail-5stardatinga-r6d0fpp7smk.ws-us59.gitpod.io/api/profile/${id}`,
-            {
-              mode: "no-cors",
-              headers: { "Access-Control-Allow-Origin": "*" },
-            }
+            process.env.BACKEND_URL + `/api/profile/${id}`,
           );
           if (resp.ok) {
             const data = await resp.json();

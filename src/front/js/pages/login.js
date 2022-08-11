@@ -3,34 +3,35 @@ import { Context } from "../store/appContext";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-
+  const token = sessionStorage.getItem("token");
+  const navigate =  useNavigate();
+  console.log('this is your token,', token)
   const { store, actions } = useContext(Context);
 
-  const handleSubmit = async () => {
-    actions
-      .login(email, password)
-      .then(() => {})
-      .catch(() => {
-        setError("something");
-      });
+  const handleSubmit = () => {
+    actions.login(email, password)
   };
-  console.log(email, password, error);
+
+  if(token && token != "" && token != undefined) navigate('/')
+
   return (
     <div className="login-page">
+      {token && token != "" && token != undefined ? (
+        "You are logged in with this token."
+      ) : (
       <Form className="login-form">
-        {error && <Alert variant={"danger"}>Something went wrong!</Alert>}
-        <br />
-       
+      
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control
             type="email"
             placeholder="Enter email"
+            value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
 
@@ -44,6 +45,7 @@ export const Login = () => {
           <Form.Control
             type="password"
             placeholder="Password"
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Group>
@@ -51,7 +53,9 @@ export const Login = () => {
         <Button variant="primary" type="submit" onClick={handleSubmit}>
           Submit
         </Button>
+    
       </Form>
+        )}
     </div>
   );
 };
