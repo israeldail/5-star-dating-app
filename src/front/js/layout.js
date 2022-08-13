@@ -13,6 +13,7 @@ import { Cards } from "./component/cards";
 import { Status } from "./pages/statuspage";
 import { IntroductionPage } from "./pages/introduction";
 import { RegistrationPage } from "./pages/registration";
+import { Rating } from "./component/starRating";
 
 //create your first component
 const Layout = () => {

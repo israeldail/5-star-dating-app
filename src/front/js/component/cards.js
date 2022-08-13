@@ -15,52 +15,48 @@ export const Cards = (props) => {
   return (
     <div className="d-flex justify-content-evenly flex-column" id="threecards">
       <Fragment>
-          {store.profiles.map((profile, i) => {
-            return (
-                <Card
-                  style={{
-                    width: "50rem",
-                    background: "black",
-                    maxHeight: "85rem",
-                    marginBottom: "50px",
-                    color: "white",
-                    boxShadow: "5px 10px #888888"
-                  }}
-                  key={i}
-                >
-                  <Card.Img
-                    variant="top"
-                    src={profile.image}
-                  />
-                  <Card.Body>
-                    <div className="d-flex"> 
-                    <Card.Title>{profile.first_name}</Card.Title>
-                    <div style={{marginLeft: "0.5rem"}}>
-                    <Card.Title>{profile.last_name}</Card.Title>
-                    <Card.Title>{profile.age}</Card.Title>
+        {store.profiles.map((profile, i) => {
+          return (
+            <Card
+              style={{
+                width: "50rem",
+                background: "black",
+                maxHeight: "85rem",
+                marginBottom: "50px",
+                color: "white",
+                boxShadow: "5px 10px #888888",
+              }}
+              key={i}
+            >
+              <Card.Img variant="top" src={profile.image} />
+              <Card.Body>
+                <div className="d-flex">
+                  <Card.Title>{profile.first_name}</Card.Title>
+                  <div className="d-flex" style={{ marginLeft: "0.5rem" }}>
+                    <Card.Title>{profile.last_name+","}</Card.Title>
+                    <div style={{ marginLeft: "0.5rem" }}>
+                      <Card.Title>{profile.age}</Card.Title>
                     </div>
-                    </div>
-                    <Card.Text>{profile.bio}</Card.Text>
-                    <Card.Text>
-                      {profile.bio}
-                    </Card.Text>
-                    <div id="bottomcontainer">
-                      
-                      <span className="d-flex justify-content-evenly float-left">
-                        <Link to={`/profile/${profile.id}`}>
-                          <Button id="button1" variant="primary">
-                            Read reviews
-                          </Button>
-                        </Link>
-                        <Button id="button2" variant="primary">
-                          Thumbs Up
-                        </Button>
-                      </span>
-                    </div>
-                  </Card.Body>
-                </Card>
-            );
-          })}
+                  </div>
+                </div>
+                <Card.Text>{profile.bio}</Card.Text>
+                <Card.Text>{profile.bio}</Card.Text>
+                <div id="bottomcontainer">
+                  <span className="d-flex justify-content-evenly float-left">
+                    <Link to={`/profile/${profile.id}`}>
+                      <Button id="button1" variant="primary">
+                        Read reviews
+                      </Button>
+                    </Link>
+                    <Button id="button2" variant="primary">
+                      Thumbs Up
+                    </Button>
+                  </span>
+                </div>
+              </Card.Body>
+            </Card>
+          );
+        })}
       </Fragment>
     </div>
   );

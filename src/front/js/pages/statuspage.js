@@ -1,18 +1,25 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import { Title } from "react-bootstrap";
 import { Text } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar as faStarSolid } from "@fortawesome/free-solid-svg-icons";
+import { Rating } from "../component/starRating";
 
 export const Status = (props) => {
   const { id } = useParams();
+  const [rating, setRating] = useState(0)
   useEffect(() => {
     actions.getPerson(id);
   }, []);
 
   const { store, actions } = useContext(Context);
+  const onRating = (newRating) => {
+    setRating(newRating)  
+  }
   return (
     <div className="statuscard">
       <Card
@@ -20,46 +27,43 @@ export const Status = (props) => {
         style={{
           width: "50%",
           margin: "auto",
-          height: "35rem",
-          background: "white",
-          color: "black",
+          height: "100%",
+          background: "black",
+          color: "white",
+          fontSize: "36px",
         }}
       >
-       <div className="d-flex m-auto"> 
-                    <Card.Header>{store.person.first_name}</Card.Header>
-                    <div style={{marginLeft: "0.5rem"}}>
-                    <Card.Header>{store.person.last_name}</Card.Header>
-                    </div>
-                    </div>
+        <div className="d-flex m-auto">
+          <Card.Title style={{ fontSize: "48px" }}>
+            {store.person.first_name}
+          </Card.Title>
+          <div style={{ marginLeft: "0.5rem" }}>
+            <Card.Title style={{ fontSize: "48px" }}>
+              {store.person.last_name}
+            </Card.Title>
+          </div>
+        </div>
         <Card.Body>
-          <img src={store.person.image} />
+          <img src={store.person.image} height="400" width="500" />
           <Card.Title>{store.person.bio}</Card.Title>
           <Card.Text>traits and interests</Card.Text>
           <div>
-            <Link to="/">
-              <Button variant="primary">Close</Button>
-            </Link>
+            <div className="d-flex flex-column">
+              <Button
+                style={{ width: "15rem", margin: "auto" }}
+                variant="primary"
+              >
+                Request A Date
+              </Button>
 
-            <Button variant="primary">Request A Date</Button>
-
-            <div id="stars" className="d-flex">
-              <div>
-                <i id="star1" className="fa-solid fa-star"></i>
-              </div>
-              <div>
-                <i id="star2" className="fa-solid fa-star"></i>
-              </div>
-              <div>
-                <i id="star3" className="fa-solid fa-star"></i>
-              </div>
-              <div>
-                <i id="star4" className="fa-solid fa-star"></i>
-              </div>
-              <div>
-                <i id="star5" className="fa-solid fa-star"></i>
-              </div>
+              <Link to="/">
+                <Button style={{ width: "15rem" }} variant="primary">
+                  Close
+                </Button>
+              </Link>
             </div>
           </div>
+          <Rating rating={rating} onRating={onRating} />
         </Card.Body>
       </Card>
     </div>

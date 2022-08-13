@@ -97,7 +97,10 @@
 
 #stars {
   padding: 10px;
+  position: relative;
+  left: 350px;
 }
+
 
 #button1 {
   /* z-index: 998; */
@@ -157,6 +160,7 @@ body {
   background-color: #f4ddc7;
 }
 
+
 .footer {
   background-color: #d98b8b;
   bottom: 0;
@@ -175,7 +179,7 @@ body {
 }
 
 .statuscard {
-  margin-top: 20%;
+  margin-bottom: 5%;
 }
 * {
   margin: 0;
