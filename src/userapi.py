@@ -15,7 +15,9 @@ with app.app_context():
             password=user['login']['password'],
             image_url=user['picture']['large'], 
             bio="this is a random bio", 
-            traits_and_interests="random")
+            traits_and_interests="random",
+            age=user['dob']['age'])
+            
         db.session.add(user_profile)
     db.session.commit()
         

@@ -37,6 +37,7 @@ export const Cards = (props) => {
                     <Card.Title>{profile.first_name}</Card.Title>
                     <div style={{marginLeft: "0.5rem"}}>
                     <Card.Title>{profile.last_name}</Card.Title>
+                    <Card.Title>{profile.age}</Card.Title>
                     </div>
                     </div>
                     <Card.Text>{profile.bio}</Card.Text>

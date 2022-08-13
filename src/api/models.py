@@ -28,6 +28,7 @@ class Profile(db.Model):
     image_url = db.Column(db.String(120), nullable=True)
     bio = db.Column(db.String(250),  nullable=True)
     traits_and_interests = db.Column(db.String(250),  nullable=True)
+    age = db.Column(db.Integer, nullable=True)
     
 
     gender_options= db.relationship(
@@ -47,7 +48,8 @@ class Profile(db.Model):
             "gender": self.gender_id,
             "image": self.image_url,
             "bio": self.bio,
-            "traits and interests": self.traits_and_interests
+            "traits and interests": self.traits_and_interests,
+            "age": self.age
             # do not serialize the password, its a security breach
         }
 
