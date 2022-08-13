@@ -6,9 +6,8 @@ import { Button } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 
-
 export const Status = (props) => {
-  const {id} = useParams();
+  const { id } = useParams();
   useEffect(() => {
     actions.getPerson(id);
   }, []);
@@ -35,6 +34,26 @@ export const Status = (props) => {
             <Link to="/">
               <Button variant="primary">Close</Button>
             </Link>
+
+            <Button variant="primary">Request A Date</Button>
+
+            <div id="stars" className="d-flex">
+              <div>
+                <i id="star1" className="fa-solid fa-star"></i>
+              </div>
+              <div>
+                <i id="star2" className="fa-solid fa-star"></i>
+              </div>
+              <div>
+                <i id="star3" className="fa-solid fa-star"></i>
+              </div>
+              <div>
+                <i id="star4" className="fa-solid fa-star"></i>
+              </div>
+              <div>
+                <i id="star5" className="fa-solid fa-star"></i>
+              </div>
+            </div>
           </div>
         </Card.Body>
       </Card>

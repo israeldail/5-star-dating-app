@@ -106,3 +106,5 @@ def get_date_uuid(date_uuid):
     return jsonify(msg="Date created successfully", date_id=new_date.uuid), 200
 
     
+
+    

@@ -2,10 +2,10 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
+import { Dates } from "./pages/Dates";
+import { Inbox } from "./pages/Inbox";
 import { Home } from "./pages/home";
-import { Demo } from "./pages/demo";
 import { Login } from "./pages/login";
-import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
 
 import { Navbar1 } from "./component/navbar";
@@ -14,7 +14,6 @@ import { Cards } from "./component/cards";
 import { Status } from "./pages/statuspage";
 import { IntroductionPage } from "./pages/introduction";
 import { RegistrationPage } from "./pages/registration";
-import { Profile } from "./pages/profile";
 
 //create your first component
 const Layout = () => {
@@ -30,11 +29,13 @@ const Layout = () => {
 
           <Routes>
             <Route element={<Login />} path="/login" />
-            <Route element={<IntroductionPage />} path="/introduction" />
-            <Route element={<RegistrationPage />} path="/registration" />
+            <Route element={<IntroductionPage />} path="/introduction"/>
+            <Route element={<RegistrationPage />} path="/registration"/>
             <Route element={<Home />} path="/" />
-            <Route element={<Status />} path="/status/:id" />
-            <Route element={<h1>Not found!</h1>} />
+            <Route element={<Status />} path="/profile/:id"/>
+            <Route element={<Inbox />} path="/inbox"/>
+            <Route element={<Dates />} path="/profile/:id/dates"/>
+            <Route element={<h1>Not found!</h1>} /> 
           </Routes>
           <Footer />
         </ScrollToTop>

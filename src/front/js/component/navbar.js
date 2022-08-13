@@ -9,6 +9,7 @@ import { Navbar } from "react-bootstrap";
 import { NavDropdown } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import logo from "../../img/new_logo.png";
 
 export const Navbar1 = () => {
   const { store, actions } = useContext(Context);
@@ -33,13 +34,14 @@ export const Navbar1 = () => {
   // }
 
   return (
-    <Navbar bg="light" expand="lg" className="navbar">
+    <Navbar bg="light" expand="lg" className="navbar" style={{height:"100px"}}>
       <Container fluid style={{ background: "#D98B8B" }}>
         <div className="container">
           <Navbar.Brand
             style={{ color: "black", fontSize: 50, justify: "center" }}
           >
-            <span className="logo">Social Dating</span>
+            
+            <img src={logo} height="100" width="200" style={{marginLeft:"85px"}}/>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
         </div>
