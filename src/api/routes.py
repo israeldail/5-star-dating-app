@@ -80,9 +80,10 @@ def get_person(profile_id):
 @api.route('/profile/dates', methods=['POST'])
 @jwt_required()
 def get_a_date():
+    p2 = request.json.get("p2")
     active_user = Profile.query.filter_by(email=get_jwt_identity()).first()
 
-    date_request = Date(p1=active_user)
+    date_request = Date(p1=active_user, p2=p2)
     db.session.add(date_request)
     db.session.commit()
 
@@ -97,13 +98,14 @@ def get_a_date():
 @jwt_required()
 def get_date_uuid(date_uuid):
     active_user = Profile.query.filter_by(email=get_jwt_identity()).first()
+    # answer = request.json.get("answer")
     new_date = Date.query.filter_by(uuid=date_uuid).first()
 
     new_date.p2 = active_user
     db.session.merge(new_date)
     db.session.commit()
 
-    return jsonify(msg="Date created successfully", date_id=new_date.uuid), 200
+    return jsonify(msg="Date accepted", date_id=new_date.uuid), 200
 
     
 

@@ -71,6 +71,7 @@ class Date(db.Model):
     p2_id = db.Column(db.Integer, db.ForeignKey('profile.id'))
     p1 = db.relationship('Profile', foreign_keys=[p1_id], backref="dates_created")
     p2 = db.relationship('Profile', foreign_keys=[p2_id], backref="dates_participated")
+    p2_answer = db.Column(db.String(80),  nullable=True)
     p1_rating = db.Column(db.Integer, nullable=True)
     p2_rating = db.Column(db.Integer, nullable=True)
     p1_text_reviews =  db.Column(db.Text, nullable=True)
