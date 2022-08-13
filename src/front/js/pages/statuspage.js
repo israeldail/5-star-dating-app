@@ -25,7 +25,12 @@ export const Status = (props) => {
           color: "black",
         }}
       >
-        <Card.Header>{store.person.name}</Card.Header>
+       <div className="d-flex m-auto"> 
+                    <Card.Header>{store.person.first_name}</Card.Header>
+                    <div style={{marginLeft: "0.5rem"}}>
+                    <Card.Header>{store.person.last_name}</Card.Header>
+                    </div>
+                    </div>
         <Card.Body>
           <img src={store.person.image} />
           <Card.Title>{store.person.bio}</Card.Title>

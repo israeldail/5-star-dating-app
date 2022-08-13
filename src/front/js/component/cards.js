@@ -13,26 +13,32 @@ export const Cards = (props) => {
 
   const { store, actions } = useContext(Context);
   return (
-    <div className="d-flex justify-content-evenly" id="threecards">
+    <div className="d-flex justify-content-evenly flex-column" id="threecards">
       <Fragment>
-        <Carousel style={{ width: "auto", maxHeight: "35rem", color: "white" }}>
           {store.profiles.map((profile, i) => {
             return (
-              <Carousel.Item key={i}>
                 <Card
                   style={{
-                    width: "35rem",
+                    width: "50rem",
                     background: "black",
-                    maxHeight: "55rem",
+                    maxHeight: "85rem",
+                    marginBottom: "50px",
+                    color: "white",
+                    boxShadow: "5px 10px #888888"
                   }}
+                  key={i}
                 >
                   <Card.Img
                     variant="top"
                     src={profile.image}
                   />
                   <Card.Body>
-                    <Card.Title>{profile.name}</Card.Title>
-                    {/* <div><i class="fa-solid fa-star"></i></div> */}
+                    <div className="d-flex"> 
+                    <Card.Title>{profile.first_name}</Card.Title>
+                    <div style={{marginLeft: "0.5rem"}}>
+                    <Card.Title>{profile.last_name}</Card.Title>
+                    </div>
+                    </div>
                     <Card.Text>{profile.bio}</Card.Text>
                     <Card.Text>
                       {profile.bio}
@@ -52,10 +58,8 @@ export const Cards = (props) => {
                     </div>
                   </Card.Body>
                 </Card>
-              </Carousel.Item>
             );
           })}
-        </Carousel>
       </Fragment>
     </div>
   );

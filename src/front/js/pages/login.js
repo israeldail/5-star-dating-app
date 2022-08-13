@@ -50,7 +50,7 @@ export const Login = () => {
           />
         </Form.Group>
 
-        <Button variant="primary" type="submit" onClick={handleSubmit}>
+        <Button variant="primary" onClick={handleSubmit}>
           Submit
         </Button>
     

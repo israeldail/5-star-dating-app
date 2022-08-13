@@ -10,38 +10,41 @@ import { NavDropdown } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import logo from "../../img/new_logo.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const Navbar1 = () => {
   const { store, actions } = useContext(Context);
-  
 
   const token = sessionStorage.getItem("token");
   const navigate = useNavigate();
-  
 
   const handleClick = () => {
-    navigate("/login", { replace: true });
-    
+    navigate("/inbox", { replace: true });
   };
 
   const handleClick2 = () => {
-    navigate("/login")
-  }
+    navigate("/login");
+  };
 
-  // const handleLogout = () => {
-  //   actions.logout();
-  //   if(token && token != "" && token != undefined) navigate('/introduction')
-  // }
 
   return (
-    <Navbar bg="light" expand="lg" className="navbar" style={{height:"100px"}}>
+    <Navbar
+      bg="light"
+      expand="lg"
+      className="navbar"
+      style={{ height: "100px" }}
+    >
       <Container fluid style={{ background: "#D98B8B" }}>
         <div className="container">
           <Navbar.Brand
             style={{ color: "black", fontSize: 50, justify: "center" }}
           >
-            
-            <img src={logo} height="100" width="200" style={{marginLeft:"85px"}}/>
+            <img
+              src={logo}
+              height="100"
+              width="200"
+              style={{ marginLeft: "85px" }}
+            />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
         </div>
@@ -49,22 +52,31 @@ export const Navbar1 = () => {
           <Nav
             className="me-auto my-2 my-lg-0"
             style={{ maxHeight: "100px" }}
-            navbarScroll
+            id="nav"
           >
             {token && (
-              <Button id="navButton" href="#action1" onClick={handleClick}>
-                Inbox
-              </Button>
+              <div id="inboxButton">
+                <i
+                  onClick={handleClick}
+                  className="fa-solid fa-envelope fa-2xl"
+                ></i>
+              </div>
             )}
-            { !token ?
-              <Button id="navButton" href="#action1" onClick={handleClick}>
-                Login
-              </Button>
-              :
-              <Button id="navButton" href="#action1" onClick={() => {actions.logout(); handleClick2();}}>Logout</Button>
-                
-            }  
-            
+            {!token ? (
+              <div id="loginButton">
+                <i className="fa-solid fa-right-to-bracket fa-2xl" onClick={handleClick2}></i>
+              </div>
+            ) : (
+              <div id="logoutButton">
+                <i
+                  className="fa-solid fa-right-from-bracket fa-2xl"
+                  onClick={() => {
+                    actions.logout();
+                    handleClick2();
+                  }}
+                ></i>
+              </div>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>

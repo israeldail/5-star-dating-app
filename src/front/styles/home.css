@@ -16,6 +16,14 @@
   width:960px;
 }
 
+#nav {
+  position: relative;
+  left: 300px;
+}
+
+#inboxButton {
+  margin-right: 4rem;
+}
 
 #introductionPic {
   position: relative;
@@ -84,7 +92,7 @@
 }
 
 #threecards {
-  margin-top: 15%;
+  margin-top: 8%;
 }
 
 #stars {
