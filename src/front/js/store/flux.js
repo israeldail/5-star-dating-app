@@ -4,7 +4,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       token: null,
       profiles: [],
       person: [],
-      queue: []
+      queue: [],
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -104,7 +104,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           );
           if (resp.ok) {
             const data = await resp.json();
-            console.log(data);
+            console.log(data, "yooyoyoyo1");
             setStore({ profiles: data });
             // don't forget to return something, that is how the async resolves
             return data;
@@ -176,7 +176,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           );
           if (resp.ok) {
             const data = await resp.json();
-            alert(data.msg)
+            alert(data.msg);
             console.log(data);
             return data;
           }

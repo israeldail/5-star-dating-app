@@ -55,7 +55,9 @@ export const Cards = (props) => {
                     <Button
                       id="button2"
                       variant="primary"
-                      onClick={() => onLike(profile)}
+                      onClick={() => {
+                        onLike(profile);
+                      }}
                     >
                       Thumbs Up
                     </Button>

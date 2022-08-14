@@ -20,6 +20,7 @@ export const Status = (props) => {
   const onRating = (newRating) => {
     setRating(newRating)  
   }
+ 
   return (
     <div className="statuscard">
       <Card

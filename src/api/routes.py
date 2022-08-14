@@ -61,8 +61,8 @@ def get_queue():
         Date.p2_id == active_user.id)).all()
 
     profiles = Profile.query.all()
-    # we want to loop through the profile to remove any profile that is in the dates object under p1_id or p2_id 
-    # queue = 
+    # we want to loop through the profile to remove any profile that is in the dates object under p1_id or p2_id
+    # queue =
     all_profiles = list(map(lambda x: x.serialize(), profiles))
 
     return jsonify(all_profiles), 200
