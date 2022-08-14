@@ -8,14 +8,18 @@ import { Context } from "../store/appContext";
 
 export const Cards = (props) => {
   useEffect(() => {
-    actions.getProfile();
+    actions.getQueue();
   }, []);
 
   const { store, actions } = useContext(Context);
+  const onLike = (profile) => {
+    actions.like(profile.id);
+  };
+  console.log("yoyoyoyoyoyo", store.queue);
   return (
     <div className="d-flex justify-content-evenly flex-column" id="threecards">
       <Fragment>
-        {store.profiles.map((profile, i) => {
+        {store.queue.map((profile, i) => {
           return (
             <Card
               style={{
@@ -33,7 +37,7 @@ export const Cards = (props) => {
                 <div className="d-flex">
                   <Card.Title>{profile.first_name}</Card.Title>
                   <div className="d-flex" style={{ marginLeft: "0.5rem" }}>
-                    <Card.Title>{profile.last_name+","}</Card.Title>
+                    <Card.Title>{profile.last_name + ","}</Card.Title>
                     <div style={{ marginLeft: "0.5rem" }}>
                       <Card.Title>{profile.age}</Card.Title>
                     </div>
@@ -48,7 +52,11 @@ export const Cards = (props) => {
                         Read reviews
                       </Button>
                     </Link>
-                    <Button id="button2" variant="primary">
+                    <Button
+                      id="button2"
+                      variant="primary"
+                      onClick={() => onLike(profile)}
+                    >
                       Thumbs Up
                     </Button>
                   </span>

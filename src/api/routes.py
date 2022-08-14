@@ -13,7 +13,7 @@ def index():
     return " something crazy", 200
 
 
-@api.route("/token", methods=["GET","POST"])
+@api.route("/token", methods=["GET", "POST"])
 def create_token():
 
     data = request.get_json()
@@ -42,9 +42,27 @@ def create_token():
 
 
 @api.route('/profiles', methods=['GET'])
+@jwt_required()
 def get_profiles():
 
     profiles = Profile.query.all()
+    all_profiles = list(map(lambda x: x.serialize(), profiles))
+
+    return jsonify(all_profiles), 200
+
+# // filter out all the profiles that doesnt have any date table
+
+
+@api.route('/queue', methods=['GET'])
+@jwt_required()
+def get_queue():
+    active_user = Profile.query.filter_by(email=get_jwt_identity()).first()
+    dates = Date.query.filter((Date.p1_id == active_user.id) | (
+        Date.p2_id == active_user.id)).all()
+
+    profiles = Profile.query.all()
+    # we want to loop through the profile to remove any profile that is in the dates object under p1_id or p2_id 
+    # queue = 
     all_profiles = list(map(lambda x: x.serialize(), profiles))
 
     return jsonify(all_profiles), 200
@@ -74,7 +92,7 @@ def get_person(profile_id):
 
     db.session.commit()
 
-    return(jsonify(one_person)), 200
+    return (jsonify(one_person)), 200
 
 
 @api.route('/profile/dates', methods=['POST'])
@@ -82,31 +100,29 @@ def get_person(profile_id):
 def get_a_date():
     p2 = request.json.get("p2")
     active_user = Profile.query.filter_by(email=get_jwt_identity()).first()
+    p2_user = Profile.query.filter_by(id=p2).first()
 
-    date_request = Date(p1=active_user, p2=p2)
+    date_request = Date(p1=active_user, p2=p2_user)
     db.session.add(date_request)
     db.session.commit()
 
-    date_request = Date.query.filter_by(p1=active_user).order_by(Date.id.desc()).first()
+    date_request = Date.query.filter_by(
+        p1=active_user).order_by(Date.id.desc()).first()
     print(date_request.uuid)
 
     return jsonify(msg="Date created successfully", date_id=date_request.uuid), 200
 
-   
-    
+
 @api.route('/profile/dates/<string:date_uuid>', methods=['POST'])
 @jwt_required()
 def get_date_uuid(date_uuid):
     active_user = Profile.query.filter_by(email=get_jwt_identity()).first()
-    # answer = request.json.get("answer")
+    accept = request.json.get("accept")
     new_date = Date.query.filter_by(uuid=date_uuid).first()
 
-    new_date.p2 = active_user
+    # new_date.p2 = active_user
+    new_date.accept = accept
     db.session.merge(new_date)
     db.session.commit()
 
     return jsonify(msg="Date accepted", date_id=new_date.uuid), 200
-
-    
-
-    

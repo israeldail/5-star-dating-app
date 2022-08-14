@@ -4,6 +4,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       token: null,
       profiles: [],
       person: [],
+      queue: []
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -60,14 +61,10 @@ const getState = ({ getStore, getActions, setStore }) => {
         };
 
         try {
+          console.log(process.env.BACKEND_URL);
           const resp = await fetch(
-            process.env.BACKEND_URL +"/api/token",
+            process.env.BACKEND_URL + "/api/token",
             opts
-          );
-          console.log(
-            "this came from the backend",
-            resp.body,
-            typeof resp.body
           );
           if (resp.status !== 200) {
             // alert("there has been some error");
@@ -75,7 +72,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
 
           const data = await resp.json();
-          console.log("this came from the backend", resp.body, typeof data);
+          console.log("this came from the backend", data.access_token);
           sessionStorage.setItem("token", data.access_token);
           setStore({ token: data.access_token });
           return true;
@@ -91,10 +88,19 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       getProfile: async () => {
+        const token = sessionStorage.getItem("token");
+
+        const opts = {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        };
+
         try {
           // fetching data from the backend
           const resp = await fetch(
-            process.env.BACKEND_URL + "/api/profiles"
+            process.env.BACKEND_URL + "/api/profiles",
+            opts
           );
           if (resp.ok) {
             const data = await resp.json();
@@ -108,10 +114,37 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
+      getQueue: async () => {
+        const token = sessionStorage.getItem("token");
+
+        const opts = {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        };
+
+        try {
+          // fetching data from the backend
+          const resp = await fetch(
+            process.env.BACKEND_URL + "/api/queue",
+            opts
+          );
+          if (resp.ok) {
+            const data = await resp.json();
+            console.log(data);
+            setStore({ queue: data });
+            // don't forget to return something, that is how the async resolves
+            return data;
+          }
+        } catch (error) {
+          console.log("Error loading message from backend", error);
+        }
+      },
+
       getPerson: async (id) => {
         try {
           const resp = await fetch(
-            process.env.BACKEND_URL + `/api/profile/${id}`,
+            process.env.BACKEND_URL + `/api/profile/${id}`
           );
           if (resp.ok) {
             const data = await resp.json();
@@ -123,10 +156,36 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log("Error loading message from backend", error);
         }
       },
+      like: async (id) => {
+        const token = sessionStorage.getItem("token");
+        console.log("random", token);
+        const opts = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            p2: id,
+          }),
+        };
+        try {
+          const resp = await fetch(
+            process.env.BACKEND_URL + `/api/profile/dates`,
+            opts
+          );
+          if (resp.ok) {
+            const data = await resp.json();
+            alert(data.msg)
+            console.log(data);
+            return data;
+          }
+        } catch (error) {
+          console.log("Error loading message from backend", error);
+        }
+      },
 
-      requestDate: () => {
-        
-      }
+      requestDate: () => {},
     },
   };
 };
