@@ -11,61 +11,97 @@ import { Rating } from "../component/starRating";
 
 export const Status = (props) => {
   const { id } = useParams();
-  const [rating, setRating] = useState(0)
+  const [rating, setRating] = useState(0);
   useEffect(() => {
     actions.getPerson(id);
   }, []);
 
   const { store, actions } = useContext(Context);
   const onRating = (newRating) => {
-    setRating(newRating)  
-  }
- 
+    setRating(newRating);
+  };
+
   return (
     <div className="statuscard">
       <Card
-        className="text-center mt-4"
+        className="text-center "
         style={{
-          width: "50%",
+          width: "100%",
           margin: "auto",
           height: "100%",
-          background: "black",
-          color: "white",
+          background: "#f4ddc7",
+          color: "#0C090A",
           fontSize: "36px",
+          border: "none",
         }}
       >
-        <div className="d-flex m-auto">
-          <Card.Title style={{ fontSize: "48px" }}>
+        <div className="d-flex">
+          <img
+            src={store.person.image}
+            height="300"
+            width="300"
+            style={{
+              borderRadius: "50%",
+              float: "left",
+              marginLeft: "3rem",
+              marginTop: "2rem",
+            }}
+          />
+          <Card.Title style={{ fontSize: "48px", marginTop: "2rem" }}>
             {store.person.first_name}
           </Card.Title>
           <div style={{ marginLeft: "0.5rem" }}>
-            <Card.Title style={{ fontSize: "48px" }}>
+            <Card.Title style={{ fontSize: "48px", marginTop: "2rem" }}>
               {store.person.last_name}
             </Card.Title>
           </div>
         </div>
-        <Card.Body>
-          <img src={store.person.image} height="400" width="500" />
-          <Card.Title>{store.person.bio}</Card.Title>
-          <Card.Text>traits and interests</Card.Text>
-          <div>
-            <div className="d-flex flex-column">
-              <Button
-                style={{ width: "15rem", margin: "auto" }}
-                variant="primary"
-              >
-                Request A Date
-              </Button>
-
-              <Link to="/">
-                <Button style={{ width: "15rem" }} variant="primary">
-                  Close
-                </Button>
-              </Link>
-            </div>
+        <div id="tabRow">
+        <div className="mytabs">
+          <input type="radio" id="tababout" name="mytabs" />
+          <label htmlFor="tababout">About</label>
+          <div className="tab">
+            <h2>About</h2>
+            {store.person.bio}
           </div>
-          <Rating rating={rating} onRating={onRating} />
-        </Card.Body>
+        </div>
+
+        <div className="mytabs">
+          <input type="radio" id="tabphotos" name="mytabs" />
+          <label htmlFor="tabphotos">Photos</label>
+          <div className="tab">
+            <h2>Photos</h2>
+            {store.person.bio}
+          </div>
+        </div>
+
+        <div className="mytabs">
+          <input type="radio" id="tabreviews" name="mytabs" />
+          <label htmlFor="tabreviews">Reviews</label>
+          <div className="tab">
+            <h2>Reviews</h2>
+            {store.person.bio}
+            <Rating rating={rating} onRating={onRating} />
+          </div>
+        </div>
+        </div>
+
+        <div>
+          <div className="d-flex flex-column">
+            <Button
+              style={{ width: "15rem", margin: "auto" }}
+              variant="primary"
+            >
+              Request A Date
+            </Button>
+
+            <Link to="/">
+              <Button style={{ width: "15rem" }} variant="primary">
+                Close
+              </Button>
+            </Link>
+          </div>
+        </div>
       </Card>
     </div>
   );

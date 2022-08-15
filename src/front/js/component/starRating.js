@@ -6,7 +6,7 @@ export const Rating = ({ rating = 0, onRating }) => {
   const [hoveringIndex, setHoveringIndex] = useState(0);
   const mapper = (value, index) => {
     const isSelected = index + 1 <= rating;
-    return { isSelected, color: isSelected ? "yellow" : "white" };
+    return { isSelected, color: isSelected ? "yellow" : "#808080" };
   };
   const ratings = new Array(5).fill({}).map(mapper);
   const onMouseOver = (index) => {
