@@ -272,19 +272,19 @@ body {
 .mytabs label {
   padding: 25px;
   font-weight: bold;
-  background-color: #e2e2e2;
+  background-color: #f4ddc7;
 }
 
 .mytabs .tab {
   width: 100%;
   padding: 20px;
   order: 1;
-  background-color: #efff;
+  background-color: #f4ddc7;
   display: none;
 }
 
 .mytabs .tab h2 {
-  font-size: 3em;
+  font-size: 1em;
 }
 
 .mytabs input[type="radio"]:checked + label + .tab {

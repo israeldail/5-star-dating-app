@@ -7,6 +7,7 @@ import { Carousel } from "react-bootstrap";
 import { Context } from "../store/appContext";
 
 export const Cards = (props) => {
+
   useEffect(() => {
     actions.getQueue();
   }, []);
@@ -59,7 +60,7 @@ export const Cards = (props) => {
                         onLike(profile);
                       }}
                     >
-                      Thumbs Up
+                      Request Date
                     </Button>
                   </span>
                 </div>

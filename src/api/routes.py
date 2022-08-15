@@ -110,7 +110,7 @@ def get_a_date():
         p1=active_user).order_by(Date.id.desc()).first()
     print(date_request.uuid)
 
-    return jsonify(msg="Date created successfully", date_id=date_request.uuid), 200
+    return jsonify(msg="Request sent", date_id=date_request.uuid), 200
 
 
 @api.route('/profile/dates/<string:date_uuid>', methods=['POST'])
