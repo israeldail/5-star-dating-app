@@ -75,6 +75,7 @@ class Date(db.Model):
                          p1_id], backref="dates_created")
     p2 = db.relationship('Profile', foreign_keys=[
                          p2_id], backref="dates_participated")
+    p1_accept = db.Column(db.Boolean,  nullable=True)
     p2_accept = db.Column(db.Boolean,  nullable=True)
     p1_rating = db.Column(db.Integer, default=0)
     p2_rating = db.Column(db.Integer, default=0)

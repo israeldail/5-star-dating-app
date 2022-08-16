@@ -5,9 +5,16 @@ const getState = ({ getStore, getActions, setStore }) => {
       profiles: [],
       person: [],
       queue: [],
+      waiting: [],
     },
     actions: {
       // Use getActions to call a function within a fuction
+
+      getName: (first_name) => {
+        const store = getStore();
+        setStore({ waiting: [...store.waiting, first_name] });
+        console.log(store.waiting);
+      },
 
       syncTokenFromSessionStorage: () => {
         const token = sessionStorage.getItem("token");
@@ -184,8 +191,27 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log("Error loading message from backend", error);
         }
       },
-
-      requestDate: () => {},
+      pendingDates: async () => {
+        const token = sessionStorage.getItem("token");
+        const opts = {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        };
+        try {
+          const resp = await fetch(
+            process.env.BACKEND_URL + `/api/profile/dates/pending`,
+            opts
+          );
+          if (resp.ok) {
+            const data = await resp.json();
+            console.log("dates created", data);
+            return data;
+          }
+        } catch (error) {
+          console.log("Error loading message from backend", error);
+        }
+      },
     },
   };
 };

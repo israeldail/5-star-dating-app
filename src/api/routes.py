@@ -101,8 +101,13 @@ def get_a_date():
     p2 = request.json.get("p2")
     active_user = Profile.query.filter_by(email=get_jwt_identity()).first()
     p2_user = Profile.query.filter_by(id=p2).first()
+    user_ids = [active_user.id, p2]
+    # stops from making multiple requests with the same person
+    existing_date = Date.query.filter(db.and_(Date.p1_id.in_(user_ids), Date.p2_id.in_(user_ids))).first()
+    if existing_date:
+        return jsonify(msg="Request already sent", date_id=existing_date.uuid), 200
 
-    date_request = Date(p1=active_user, p2=p2_user)
+    date_request = Date(p1=active_user, p2=p2_user, p1_accept=True)
     db.session.add(date_request)
     db.session.commit()
 
@@ -113,16 +118,25 @@ def get_a_date():
     return jsonify(msg="Request sent", date_id=date_request.uuid), 200
 
 
+
 @api.route('/profile/dates/<string:date_uuid>', methods=['POST'])
 @jwt_required()
 def get_date_uuid(date_uuid):
     active_user = Profile.query.filter_by(email=get_jwt_identity()).first()
-    accept = request.json.get("accept")
+    p2_accept = request.json.get("p2_accept")
     new_date = Date.query.filter_by(uuid=date_uuid).first()
+    if active_user not in [new_date.p1, new_date.p2]:
+        return jsonify(msg="not authorized"), 403
 
-    # new_date.p2 = active_user
-    new_date.accept = accept
+    new_date.p2_accept = True
     db.session.merge(new_date)
     db.session.commit()
 
     return jsonify(msg="Date accepted", date_id=new_date.uuid), 200
+
+@api.route('/profile/dates/pending', methods=['GET'])
+@jwt_required()
+def get_pending_dates():
+    active_user = Profile.query.filter_by(email=get_jwt_identity()).first()
+    return jsonify([date.serialize() for date in active_user.dates_created])
+

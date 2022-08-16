@@ -16,6 +16,15 @@ export const Cards = (props) => {
   const onLike = (profile) => {
     actions.like(profile.id);
   };
+
+  const moveToInbox = (profile) => {
+    if(store.waiting.includes(profile.id)) {
+      return console.log("request already sent");
+    }else{
+      actions.getName(profile.first_name)
+    }
+  }
+
   console.log("yoyoyoyoyoyo", store.queue);
   return (
     <div className="d-flex justify-content-evenly flex-column" id="threecards">
@@ -58,6 +67,7 @@ export const Cards = (props) => {
                       variant="primary"
                       onClick={() => {
                         onLike(profile);
+                        moveToInbox(profile);
                       }}
                     >
                       Request Date

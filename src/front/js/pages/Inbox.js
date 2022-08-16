@@ -1,9 +1,21 @@
-import React from "react";
+import React, {Fragment, useContext, useEffect} from "react";
+import { Context } from "../store/appContext";
 
 export const Inbox = () => {
+  const { store, actions } = useContext(Context);
+  useEffect(() => {
+    actions.pendingDates();
+  }, []);
+
     return (
         <div>
-          <h1>hello</h1>
+          {store.waiting.map((item, index) => {
+            return (
+              <Fragment>
+                {item}
+              </Fragment>
+            );
+          })}
         </div>
       );
 }
