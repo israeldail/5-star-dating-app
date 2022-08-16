@@ -17,13 +17,13 @@ export const Cards = (props) => {
     actions.like(profile.id);
   };
 
-  const moveToInbox = (profile) => {
-    if(store.waiting.includes(profile.id)) {
-      return console.log("request already sent");
-    }else{
-      actions.getName(profile.first_name)
-    }
-  }
+  // const moveToInbox = (profile) => {
+  //   if(store.waiting.includes(profile.id)) {
+  //     return console.log("request already sent");
+  //   }else{
+  //     actions.getName(profile.first_name)
+  //   }
+  // }
 
   console.log("yoyoyoyoyoyo", store.queue);
   return (
@@ -67,7 +67,7 @@ export const Cards = (props) => {
                       variant="primary"
                       onClick={() => {
                         onLike(profile);
-                        moveToInbox(profile);
+                        actions.getName(profile.first_name)
                       }}
                     >
                       Request Date

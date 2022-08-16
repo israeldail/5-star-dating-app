@@ -13,7 +13,9 @@ const getState = ({ getStore, getActions, setStore }) => {
       getName: (first_name) => {
         const store = getStore();
         setStore({ waiting: [...store.waiting, first_name] });
+        const storage = localStorage.setItem("name",store.waiting)
         console.log(store.waiting);
+        console.log(storage)
       },
 
       syncTokenFromSessionStorage: () => {

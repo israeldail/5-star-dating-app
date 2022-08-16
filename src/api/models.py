@@ -96,6 +96,11 @@ class Date(db.Model):
             "uuid": self.uuid
         }
 
+class PersonInfo(db.Model):
+    __tablename__ = "personinfo"
+    id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(80),  nullable=True)
+
 # class Matches(db.Model):
 #     __tablename__ = "matches"
 

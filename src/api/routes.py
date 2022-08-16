@@ -140,3 +140,9 @@ def get_pending_dates():
     active_user = Profile.query.filter_by(email=get_jwt_identity()).first()
     return jsonify([date.serialize() for date in active_user.dates_created])
 
+
+@api.route('/name', methods=['GET'])
+def get_name():
+    body=request.get_json()
+    name = PersonInfo(name=body["name"])
+

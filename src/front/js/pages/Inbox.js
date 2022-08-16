@@ -5,15 +5,21 @@ export const Inbox = () => {
   const { store, actions } = useContext(Context);
   useEffect(() => {
     actions.pendingDates();
+  
   }, []);
-
+  useEffect(() => {
+    actions.getName();
+  }, []);
+  const storage = localStorage.getItem(store.waiting)
+    console.log(store.waiting, "array data")
     return (
         <div>
+          {storage}
           {store.waiting.map((item, index) => {
             return (
-              <Fragment>
+              <div key={index}>
                 {item}
-              </Fragment>
+              </div>
             );
           })}
         </div>
