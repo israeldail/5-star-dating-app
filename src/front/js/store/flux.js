@@ -6,6 +6,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       person: [],
       queue: [],
       waiting: [],
+      pendingDates: [],
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -13,9 +14,9 @@ const getState = ({ getStore, getActions, setStore }) => {
       getName: (first_name) => {
         const store = getStore();
         setStore({ waiting: [...store.waiting, first_name] });
-        const storage = localStorage.setItem("name",store.waiting)
+        const storage = localStorage.setItem("name", store.waiting);
         console.log(store.waiting);
-        console.log(storage)
+        console.log(storage);
       },
 
       syncTokenFromSessionStorage: () => {
@@ -205,23 +206,22 @@ const getState = ({ getStore, getActions, setStore }) => {
           body: JSON.stringify({
             p2: date_uuid,
           }),
-      }
-      try {
-        const resp = await fetch(
-          process.env.BACKEND_URL + `/api/profile/dates/<string:date_uuid>`,
-          opts
-        );
-        if (resp.ok) {
-          const data = await resp.json();
-          alert(data.msg);
-          console.log(data);
-          return data;
+        };
+        try {
+          const resp = await fetch(
+            process.env.BACKEND_URL + `/api/profile/dates/<string:date_uuid>`,
+            opts
+          );
+          if (resp.ok) {
+            const data = await resp.json();
+            alert(data.msg);
+            console.log(data);
+            return data;
+          }
+        } catch (error) {
+          console.log("Error loading message from backend", error);
         }
-      } catch (error) {
-        console.log("Error loading message from backend", error);
-      }
-    },
-
+      },
 
       pendingDates: async () => {
         const token = sessionStorage.getItem("token");
@@ -238,7 +238,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           if (resp.ok) {
             const data = await resp.json();
             console.log("dates created", data);
-            return data;
+            setStore({ pendingDates: data });
           }
         } catch (error) {
           console.log("Error loading message from backend", error);

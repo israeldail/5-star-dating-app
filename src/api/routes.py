@@ -103,7 +103,8 @@ def get_a_date():
     p2_user = Profile.query.filter_by(id=p2).first()
     user_ids = [active_user.id, p2]
     # stops from making multiple requests with the same person
-    existing_date = Date.query.filter(db.and_(Date.p1_id.in_(user_ids), Date.p2_id.in_(user_ids))).first()
+    existing_date = Date.query.filter(
+        db.and_(Date.p1_id.in_(user_ids), Date.p2_id.in_(user_ids))).first()
     if existing_date:
         return jsonify(msg="Request already sent", date_id=existing_date.uuid), 200
 
@@ -116,7 +117,6 @@ def get_a_date():
     print(date_request.uuid)
 
     return jsonify(msg="Request sent", date_id=date_request.uuid), 200
-
 
 
 @api.route('/profile/dates/<string:date_uuid>', methods=['POST'])
@@ -134,15 +134,27 @@ def get_date_uuid(date_uuid):
 
     return jsonify(msg="Date accepted", date_id=new_date.uuid), 200
 
+
 @api.route('/profile/dates/pending', methods=['GET'])
 @jwt_required()
 def get_pending_dates():
     active_user = Profile.query.filter_by(email=get_jwt_identity()).first()
-    return jsonify([date.serialize() for date in active_user.dates_created])
+    print(active_user.serialize())
+    dates = Date.query.filter_by(p2_id=active_user.id)
+    dates_serialized = [date.serialize() for date in dates]
+
+    # def myFunc(date):
+    #     if date.p2_id:
+    #         return False
+    #     else:
+    #         return True
+
+    # pending_dates = filter(myFunc, dates)
+    # print(pending_dates)
+    return jsonify(dates_serialized)
 
 
 @api.route('/name', methods=['GET'])
 def get_name():
-    body=request.get_json()
+    body = request.get_json()
     name = PersonInfo(name=body["name"])
-
