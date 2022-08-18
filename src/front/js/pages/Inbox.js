@@ -84,7 +84,7 @@ export const Inbox = () => {
         console.log(item);
 
         let profile = store.queue.find(
-          (profile, i) => item.p2_id == profile.id
+          (profile, i) => item.p1_id == profile.id
         );
         return (
           <Card
@@ -130,10 +130,9 @@ export const Inbox = () => {
                       Read reviews
                     </Button>
                   </Link>
-                  <div style={{ fontSize: "1rem" }} className="muted-text">
-                    Request Sent{" "}
-                    {<FontAwesomeIcon color="green" icon={faCheck} />}
-                  </div>
+                 <Button variant="success">Accept</Button>
+                 <Button variant="danger">Decline</Button>
+                  
                 </span>
               </div>
             </Card.Body>
