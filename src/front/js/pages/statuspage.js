@@ -24,6 +24,7 @@ export const Status = (props) => {
     setRating(newRating);
   };
 
+
   return (
     <div className="statuscard">
       <Card

@@ -46,7 +46,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           setStore({ token: JSON.parse(token) });
       },
 
-      signup: async (email, password) => {
+      signup: async (email, password,first_name,last_name,bio,age) => {
         const opts = {
           method: "POST",
           headers: {
@@ -55,6 +55,10 @@ const getState = ({ getStore, getActions, setStore }) => {
           body: JSON.stringify({
             email: email,
             password: password,
+            first_name: first_name,
+            last_name: last_name,
+            bio: bio,
+            age: age,
           }),
         };
 
@@ -173,6 +177,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       getPerson: async (id) => {
         try {
+          getActions().rehydrate();
           const resp = await fetch(
             process.env.BACKEND_URL + `/api/profile/${id}`
           );
@@ -180,6 +185,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             const data = await resp.json();
             console.log(data);
             setStore({ person: data });
+            getActions().dehydrate();
             return data;
           }
         } catch (error) {

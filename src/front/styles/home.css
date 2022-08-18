@@ -301,5 +301,16 @@ body {
   display: block;
 }
 
+.label {
+  font-weight: bold;
+  text-decoration: underline 2px;
+  text-align: left;
+  padding: 1rem;
+}
 
-
+.input {
+  border-radius: 2rem;
+  border-color: black;
+  width: 45%;
+  text-align: center;
+}
