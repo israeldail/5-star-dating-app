@@ -158,7 +158,7 @@
 
 body {
   width: 100%;
-  background-color: #f4ddc7;
+  background-color: #fffacd;
 }
 
 
@@ -272,14 +272,14 @@ body {
 .mytabs label {
   padding: 25px;
   font-weight: bold;
-  background-color: #f4ddc7;
+  background-color: #fffacd;
 }
 
 .mytabs .tab {
   width: 100%;
   padding: 20px;
   order: 1;
-  background-color: #f4ddc7;
+  background-color: #fffacd;
   display: none;
 }
 

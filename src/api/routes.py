@@ -135,26 +135,38 @@ def get_date_uuid(date_uuid):
     return jsonify(msg="Date accepted", date_id=new_date.uuid), 200
 
 
+@api.route('/profile/dates/reject/<string:date_uuid>', methods=['DELETE'])
+@jwt_required()
+def reject(date_uuid):
+    active_user = Profile.query.filter_by(email=get_jwt_identity()).first()
+    p2_decline = request.json.get("p2_decline")
+    pending_date = Date.query.filter_by(uuid=date_uuid).first()
+    
+    pending_date.p2_decline = True
+    db.session.delete(pending_date)
+    db.session.commit()
+
+    return jsonify(msg="Date rejected", date_id=pending_date.uuid), 200
+
+
 @api.route('/profile/dates/pending', methods=['GET'])
 @jwt_required()
 def get_pending_dates():
     active_user = Profile.query.filter_by(email=get_jwt_identity()).first()
-    print(active_user.serialize())
-    dates = Date.query.filter_by(p2_id=active_user.id)
-    dates_serialized = [date.serialize() for date in dates]
+    return jsonify([date.serialize() for date in active_user.dates_created])
+ 
 
-    # def myFunc(date):
-    #     if date.p2_id:
-    #         return False
-    #     else:
-    #         return True
+@api.route('/profile/dates/invited', methods=['GET'])
+@jwt_required()
+def get_invitations():
+    active_user = Profile.query.filter_by(email=get_jwt_identity()).first()
+    return jsonify([date.serialize() for date in active_user.dates_invited])
 
-    # pending_dates = filter(myFunc, dates)
-    # print(pending_dates)
-    return jsonify(dates_serialized)
+@api.route('/profile', methods=['GET'])
+@jwt_required()
+def get_profile():
 
+    profile = Profile.query.filter_by(email=get_jwt_identity()).first()
+   
 
-@api.route('/name', methods=['GET'])
-def get_name():
-    body = request.get_json()
-    name = PersonInfo(name=body["name"])
+    return jsonify(profile.serialize()), 200

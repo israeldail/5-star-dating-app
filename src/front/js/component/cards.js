@@ -7,10 +7,11 @@ import { Carousel } from "react-bootstrap";
 import { Context } from "../store/appContext";
 
 export const Cards = (props) => {
-
   useEffect(() => {
     actions.getQueue();
+    actions.rehydrate();
   }, []);
+
 
   const { store, actions } = useContext(Context);
   const onLike = (profile) => {
@@ -29,7 +30,7 @@ export const Cards = (props) => {
   return (
     <div className="d-flex justify-content-evenly flex-column" id="threecards">
       <Fragment>
-        {store.queue.map((profile, i) => {
+        {store.queue?.map((profile, i) => {
           return (
             <Card
               style={{
@@ -67,7 +68,7 @@ export const Cards = (props) => {
                       variant="primary"
                       onClick={() => {
                         onLike(profile);
-                        actions.getName(profile.first_name)
+                        // actions.getName(profile.first_name);
                       }}
                     >
                       Request Date

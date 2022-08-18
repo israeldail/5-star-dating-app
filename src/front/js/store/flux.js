@@ -7,9 +7,25 @@ const getState = ({ getStore, getActions, setStore }) => {
       queue: [],
       waiting: [],
       pendingDates: [],
+      accept: null,
+      profile: {},
     },
     actions: {
       // Use getActions to call a function within a fuction
+
+      dehydrate: () => {
+        for (const key in getStore()) {
+          sessionStorage.setItem(key, JSON.stringify(getStore()[key]));
+        }
+      },
+
+      rehydrate: () => {
+        for (const key in getStore()) {
+          let update = {};
+          update[key] = JSON.parse(sessionStorage.getItem(key));
+          setStore(update);
+        }
+      },
 
       getName: (first_name) => {
         const store = getStore();
@@ -25,7 +41,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           "application just loaded, syncing the session storage token"
         );
         if (token && token != "" && token != undefined)
-          setStore({ token: token });
+          setStore({ token: JSON.parse(token) });
       },
 
       signup: async (email, password) => {
@@ -83,7 +99,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
           const data = await resp.json();
           console.log("this came from the backend", data.access_token);
-          sessionStorage.setItem("token", data.access_token);
+          sessionStorage.setItem("token", JSON.stringify(data.access_token));
           setStore({ token: data.access_token });
           return true;
         } catch (error) {
@@ -98,11 +114,11 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       getProfile: async () => {
-        const token = sessionStorage.getItem("token");
-
+        // const token = sessionStorage.getItem("token");
+        getActions().rehydrate();
         const opts = {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${getStore().token}`,
           },
         };
 
@@ -117,6 +133,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             console.log(data, "yooyoyoyo1");
             setStore({ profiles: data });
             // don't forget to return something, that is how the async resolves
+            getActions().dehydrate();
             return data;
           }
         } catch (error) {
@@ -125,11 +142,11 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       getQueue: async () => {
-        const token = sessionStorage.getItem("token");
-
+        // const token = sessionStorage.getItem("token");
+        getActions().rehydrate();
         const opts = {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${getStore().token}`,
           },
         };
 
@@ -143,6 +160,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             const data = await resp.json();
             console.log(data);
             setStore({ queue: data });
+            getActions().dehydrate();
             // don't forget to return something, that is how the async resolves
             return data;
           }
@@ -167,13 +185,13 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
       like: async (id) => {
-        const token = sessionStorage.getItem("token");
-        console.log("random", token);
+        // const token = sessionStorage.getItem("token");
+        getActions().rehydrate();
         const opts = {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${getStore().token}`,
           },
           body: JSON.stringify({
             p2: id,
@@ -188,6 +206,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             const data = await resp.json();
             alert(data.msg);
             console.log(data);
+            getActions().dehydrate();
             return data;
           }
         } catch (error) {
@@ -196,12 +215,13 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       accept: async (date_uuid) => {
-        const token = sessionStorage.getItem("token");
+        // const token = sessionStorage.getItem("token");
+        getActions().rehydrate();
         const opts = {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${getStore().token}`,
           },
           body: JSON.stringify({
             p2: date_uuid,
@@ -216,6 +236,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             const data = await resp.json();
             alert(data.msg);
             console.log(data);
+            getActions().dehydrate();
             return data;
           }
         } catch (error) {
@@ -224,10 +245,11 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       pendingDates: async () => {
-        const token = sessionStorage.getItem("token");
+        // const token = localStorage.getItem("token");
+        getActions().rehydrate();
         const opts = {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${getStore().token}`,
           },
         };
         try {
@@ -239,6 +261,57 @@ const getState = ({ getStore, getActions, setStore }) => {
             const data = await resp.json();
             console.log("dates created", data);
             setStore({ pendingDates: data });
+            getActions().dehydrate();
+            return data;
+          }
+        } catch (error) {
+          console.log("Error loading message from backend", error);
+        }
+      },
+
+      pendingInvitations: async () => {
+        // const token = localStorage.getItem("token");
+        getActions().rehydrate();
+        const opts = {
+          headers: {
+            Authorization: `Bearer ${getStore().token}`,
+          },
+        };
+        try {
+          const resp = await fetch(
+            process.env.BACKEND_URL + `/api/profile/dates/invited`,
+            opts
+          );
+          if (resp.ok) {
+            const data = await resp.json();
+            console.log("dates created", data);
+            setStore({ pendingInvitations: data });
+            getActions().dehydrate();
+            return data;
+          }
+        } catch (error) {
+          console.log("Error loading message from backend", error);
+        }
+      },
+
+      profile: async () => {
+        getActions().rehydrate();
+        const opts = {
+          headers: {
+            Authorization: `Bearer ${getStore().token}`,
+          },
+        };
+        try {
+          const resp = await fetch(
+            process.env.BACKEND_URL + `/api/profile`,
+            opts
+          );
+          if (resp.ok) {
+            const data = await resp.json();
+            console.log(data, "user data");
+            setStore({ profile: data });
+            getActions().dehydrate();
+            return data;
           }
         } catch (error) {
           console.log("Error loading message from backend", error);

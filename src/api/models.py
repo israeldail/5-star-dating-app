@@ -74,9 +74,10 @@ class Date(db.Model):
     p1 = db.relationship('Profile', foreign_keys=[
                          p1_id], backref="dates_created")
     p2 = db.relationship('Profile', foreign_keys=[
-                         p2_id], backref="dates_participated")
+                         p2_id], backref="dates_invited")
     p1_accept = db.Column(db.Boolean,  nullable=True)
     p2_accept = db.Column(db.Boolean,  nullable=True)
+    p2_decline = db.Column(db.Boolean,  nullable=True)
     p1_rating = db.Column(db.Integer, default=0)
     p2_rating = db.Column(db.Integer, default=0)
     p1_text_reviews = db.Column(db.Text, nullable=True)
@@ -96,10 +97,6 @@ class Date(db.Model):
             "uuid": self.uuid
         }
 
-class PersonInfo(db.Model):
-    __tablename__ = "personinfo"
-    id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String(80),  nullable=True)
 
 # class Matches(db.Model):
 #     __tablename__ = "matches"

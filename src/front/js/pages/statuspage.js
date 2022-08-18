@@ -32,7 +32,7 @@ export const Status = (props) => {
           width: "100%",
           margin: "auto",
           height: "100%",
-          background: "#f4ddc7",
+          background: "#fffacd",
           color: "#0C090A",
           fontSize: "36px",
           border: "none",
