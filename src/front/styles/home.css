@@ -17,13 +17,16 @@
 }
 
 #nav {
-  position: relative;
-  left: 300px;
+  display: flex;
+  justify-content: space-evenly;
+  left: 5px;
 }
 
 #inboxButton {
-  margin-right: 4rem;
+  margin-right: 5rem;
 }
+
+
 
 #introductionPic {
   position: relative;
@@ -154,6 +157,13 @@
 #star5:hover {
   color: yellow;
   transform: scale(1.1);
+}
+
+#userName {
+  float: left;
+  margin-right: 10rem;
+  font-weight: bolder;
+  font-size: 15px;
 }
 
 body {

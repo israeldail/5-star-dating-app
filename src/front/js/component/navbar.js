@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useContext, useState, Profiler } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
@@ -25,9 +25,6 @@ export const Navbar1 = () => {
   const handleClick2 = () => {
     navigate("/login");
   };
-
-
-
 
   return (
     <Navbar
@@ -58,6 +55,7 @@ export const Navbar1 = () => {
           >
             {token && (
               <div id="inboxButton">
+                <div id="userName">Welcome, {store.profile.first_name} {store.profile.last_name}</div>
                 <i
                   onClick={handleClick}
                   className="fa-solid fa-envelope fa-2xl"
@@ -66,7 +64,10 @@ export const Navbar1 = () => {
             )}
             {!token ? (
               <div id="loginButton">
-                <i className="fa-solid fa-right-to-bracket fa-2xl" onClick={handleClick2}></i>
+                <i
+                  className="fa-solid fa-right-to-bracket fa-2xl"
+                  onClick={handleClick2}
+                ></i>
               </div>
             ) : (
               <div id="logoutButton">
