@@ -72,7 +72,12 @@ def get_queue():
 def handle_signup():
     response_body = request.get_json()
     profile = Profile(
-        email=response_body["email"], password=response_body["password"])
+        email=response_body["email"],
+        password=response_body["password"],
+        first_name=response_body["first_name"],
+        last_name=response_body["last_name"],
+        bio=response_body["bio"],
+        age=response_body["age"] )
     db.session.add(profile)
     db.session.commit()
 

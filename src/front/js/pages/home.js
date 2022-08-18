@@ -10,7 +10,7 @@ export const Home = () => {
   const { store, actions } = useContext(Context);
   const token = sessionStorage.getItem("token");
   const navigate = useNavigate();
-
+  if(!token) navigate('/introduction')
   return (
     <div className="body">
       
