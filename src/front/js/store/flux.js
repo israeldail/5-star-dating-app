@@ -1,15 +1,17 @@
+const defaultStore = {token: null,
+  profiles: [],
+  person: [],
+  queue: [],
+  waiting: [],
+  pendingDates: [],
+  accept: null,
+  profile: {},
+  pendingInvitations: [],
+}
+
 const getState = ({ getStore, getActions, setStore }) => {
   return {
-    store: {
-      token: null,
-      profiles: [],
-      person: [],
-      queue: [],
-      waiting: [],
-      pendingDates: [],
-      accept: null,
-      profile: {},
-    },
+    store: defaultStore,
     actions: {
       // Use getActions to call a function within a fuction
 
@@ -110,7 +112,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       logout: () => {
         sessionStorage.removeItem("token");
         console.log("Logging out");
-        setStore({ token: null });
+        setStore(defaultStore);
       },
 
       getProfile: async () => {
@@ -130,7 +132,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           );
           if (resp.ok) {
             const data = await resp.json();
-            console.log(data, "yooyoyoyo1");
+            console.log(data, "getting profile");
             setStore({ profiles: data });
             // don't forget to return something, that is how the async resolves
             getActions().dehydrate();

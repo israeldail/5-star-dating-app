@@ -40,7 +40,7 @@ export const Status = (props) => {
       >
         <div className="d-flex">
           <img
-            src={store.person.image}
+            src={store.person?.image}
             height="300"
             width="300"
             style={{
@@ -51,11 +51,11 @@ export const Status = (props) => {
             }}
           />
           <Card.Title style={{ fontSize: "48px", marginTop: "2rem" }}>
-            {store.person.first_name}
+            {store.person?.first_name}
           </Card.Title>
           <div style={{ marginLeft: "0.5rem" }}>
             <Card.Title style={{ fontSize: "48px", marginTop: "2rem" }}>
-              {store.person.last_name}
+              {store.person?.last_name}
             </Card.Title>
           </div>
         </div>

@@ -25,9 +25,9 @@ export const Navbar1 = () => {
   const handleClick2 = () => {
     navigate("/login");
   };
-
+  console.log("lets go",store.profile);
   return (
-    <Navbar
+    <Navbar 
       bg="light"
       expand="lg"
       className="navbar"
@@ -55,7 +55,7 @@ export const Navbar1 = () => {
           >
             {token && (
               <div id="inboxButton">
-                <div id="userName">Welcome, {store.profile.first_name} {store.profile.last_name}</div>
+                <div id="userName">Welcome, {store.profile.first_name}</div>
                 <i
                   onClick={handleClick}
                   className="fa-solid fa-envelope fa-2xl"
