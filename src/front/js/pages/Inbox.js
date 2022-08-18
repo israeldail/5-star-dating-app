@@ -138,7 +138,7 @@ export const Inbox = () => {
                       Read reviews
                     </Button>
                   </Link>
-                  {!item ? (
+                  {item?.p2_accept == true ? (
                     <div>date accepted</div>
                   ) : (
                     <div>
