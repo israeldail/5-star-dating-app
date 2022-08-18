@@ -14,6 +14,7 @@ export const Inbox = () => {
 
     actions.rehydrate();
   }, []);
+
   console.log(store.queue);
   return (
     <div>
@@ -79,13 +80,20 @@ export const Inbox = () => {
         );
       })}
       <h2 style={{ marginTop: "17rem" }}> Pending request </h2>
-      
+
       {store.pendingInvitations?.map((item, index) => {
         console.log(item);
-
+        console.log(item.uuid, "date id");
+        const onAccept = (item) => {
+          actions?.accept(item.uuid);
+        };
+        const onReject = (item) => {
+          actions?.reject(item.uuid);
+        };
         let profile = store.queue.find(
           (profile, i) => item.p1_id == profile.id
         );
+
         return (
           <Card
             style={{
@@ -130,9 +138,29 @@ export const Inbox = () => {
                       Read reviews
                     </Button>
                   </Link>
-                 <Button variant="success">Accept</Button>
-                 <Button variant="danger">Decline</Button>
-                  
+                  {!item ? (
+                    <div>date accepted</div>
+                  ) : (
+                    <div>
+                      <Button
+                        onClick={() => {
+                          onAccept(item);
+                        }}
+                        variant="success"
+                      >
+                        Accept
+                      </Button>
+
+                      <Button
+                        onClick={() => {
+                          onReject(item);
+                        }}
+                        variant="danger"
+                      >
+                        Decline
+                      </Button>
+                    </div>
+                  )}
                 </span>
               </div>
             </Card.Body>

@@ -148,7 +148,7 @@ def reject(date_uuid):
     pending_date = Date.query.filter_by(uuid=date_uuid).first()
     
     pending_date.p2_decline = True
-    db.session.remove(pending_date)
+    db.session.delete(pending_date)
     db.session.commit()
 
     return jsonify(msg="Date rejected", date_id=pending_date.uuid), 200

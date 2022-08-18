@@ -237,7 +237,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         };
         try {
           const resp = await fetch(
-            process.env.BACKEND_URL + `/api/profile/dates/<string:date_uuid>`,
+            process.env.BACKEND_URL + `/api/profile/dates/${date_uuid}`,
             opts
           );
           if (resp.ok) {
@@ -250,6 +250,36 @@ const getState = ({ getStore, getActions, setStore }) => {
         } catch (error) {
           console.log("Error loading message from backend", error);
         }
+      },
+
+      reject: async (date_uuid) => {
+        getActions().rehydrate();
+        const opts = {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${getStore().token}`,
+          },
+          body: JSON.stringify({
+            p2: date_uuid,
+          }),
+        };
+        try {
+          const resp = await fetch(
+            process.env.BACKEND_URL + `/api/profile/dates/reject/${date_uuid}`,
+            opts
+          );
+          if (resp.ok) {
+            const data = await resp.json();
+            alert(data.msg);
+            console.log(data);
+            getActions().dehydrate();
+            return data;
+          }
+        } catch (error) {
+          console.log("Error loading message from backend", error);
+        }
+        
       },
 
       pendingDates: async () => {
