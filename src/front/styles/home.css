@@ -11,9 +11,9 @@
 }
 
 #wrapper {
-  margin-left:auto;
-  margin-right:auto;
-  width:960px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 960px;
 }
 
 #nav {
@@ -25,8 +25,6 @@
 #inboxButton {
   margin-right: 5rem;
 }
-
-
 
 #introductionPic {
   position: relative;
@@ -104,7 +102,6 @@
   left: 800px;
 }
 
-
 #button1 {
   /* z-index: 998; */
   position: relative;
@@ -171,7 +168,6 @@ body {
   background-color: #fffacd;
 }
 
-
 .footer {
   background-color: #d98b8b;
   bottom: 0;
@@ -231,14 +227,13 @@ body {
 #button-color {
   top: 0;
   left: 0;
-  poistion: absolute;
+  position: absolute;
   width: 110%;
   height: 100%;
   background: liner-gradient(to right, #ff105f, #ffad06);
   border-radius: 30px;
   transition: 0.5seconds;
 }
-
 
 .input-group {
   top: 180px;
@@ -314,3 +309,38 @@ body {
   width: 45%;
   text-align: center;
 }
+
+#introPic1 {
+  position: relative;
+  width: 115%;
+  height: 100%;
+  margin-left: 100;
+  z-index: -10;
+}
+#introPic2 {
+  position: relative;
+  width: 156%;
+  height: 100%;
+  margin-left: 100;
+  z-index: -10;
+}
+.signupcontainer {
+  position: absolute;
+  top: 10rem;
+  left: 5rem;
+  height: 35rem;
+  width: 50rem;
+  background: rgba(227, 171, 171, 0.54);
+  text-align: center;
+}
+
+.mainintro {
+  display: flex;
+  height: 100%;
+}
+/* .submit {
+  margin: auto;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+} */
