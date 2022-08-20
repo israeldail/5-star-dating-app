@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import couple1 from "../../img/couple1.png";
 import couple2 from "../../img/couple2.png";
+import { Link } from "react-router-dom";
 
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
@@ -85,9 +86,11 @@ export const RegistrationPage = () => {
               onChange={(e) => setAge(e.target.value)}
             />
           </div>
+          <Link to="/login">
           <button className="submit" onClick={handleFormSubmit}>
             Sign Up
           </button>
+          </Link>
         </form>
       </div>
     </div>
