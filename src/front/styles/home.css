@@ -320,23 +320,31 @@ body {
 
 #introPic1 {
   position: relative;
-  width: 115%;
   height: 100%;
   margin-left: 100;
   z-index: -10;
 }
 #introPic2 {
   position: relative;
-  width: 156%;
   height: 100%;
   margin-left: 100;
   z-index: -10;
+
+
 }
+
+
+#backtobutton{
+  position: absolute;
+  right: 45rem;
+}
+
+
 .signupcontainer {
   position: absolute;
-  top: 10rem;
-  left: 5rem;
-  height: 35rem;
+  top: 15rem;
+  left: 35rem;
+  height: 45rem;
   width: 50rem;
   background: rgba(227, 171, 171, 0.54);
   text-align: center;
@@ -346,9 +354,11 @@ body {
   display: flex;
   height: 100%;
 }
-/* .submit {
+
+.submit {
   margin: auto;
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
-} */
+  margin-top: 5rem;
+}
