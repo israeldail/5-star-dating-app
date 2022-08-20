@@ -14,12 +14,14 @@ export const Cards = (props) => {
   useEffect(() => {
     actions.getQueue();
     actions.rehydrate();
+    actions.pendingDates();
   }, []);
 
 
   const { store, actions } = useContext(Context);
   const onLike = (profile) => {
     actions.like(profile.id);
+    window.location.reload(false);
   };
   
   return (
