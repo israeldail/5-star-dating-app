@@ -175,3 +175,4 @@ def get_profile():
    
 
     return jsonify(profile.serialize()), 200
+

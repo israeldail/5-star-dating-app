@@ -16,7 +16,7 @@ tasks:
         pipenv install &&
         psql -U gitpod -c 'CREATE DATABASE example;' &&
         psql -U gitpod -c 'CREATE EXTENSION unaccent;' -d example &&
-        pipenv run init && 
+        (pipenv run init || true) && 
         pipenv run migrate && 
         pipenv run upgrade &&
         python docs/assets/greeting.py back

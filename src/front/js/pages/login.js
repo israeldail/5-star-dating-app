@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
@@ -54,6 +55,12 @@ export const Login = () => {
           <Button variant="primary" onClick={handleSubmit}>
             Submit
           </Button>
+          <Link to="/introduction">
+          <Button variant="primary">
+            Back to Introduction
+          </Button>
+          </Link>
+
         </Form>
       )}
     </div>

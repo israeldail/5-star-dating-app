@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import { Dates } from "./pages/Dates";
 import { Inbox } from "./pages/Inbox";
 import { Home } from "./pages/home";
 import { Login } from "./pages/login";
@@ -27,13 +26,12 @@ const Layout = () => {
           <Navbar1 />
 
           <Routes>
-            <Route element={<Login />} path="/login" />
+            <Route element={<Home />} path="/" />
             <Route element={<IntroductionPage />} path="/introduction"/>
             <Route element={<RegistrationPage />} path="/registration"/>
-            <Route element={<Home />} path="/" />
+            <Route element={<Login />} path="/login" />
             <Route element={<Status />} path="/profile/:id"/>
             <Route element={<Inbox />} path="/inbox"/>
-            <Route element={<Dates />} path="/profile/:id/dates"/>
             <Route element={<h1>Not found!</h1>} /> 
           </Routes>
           <Footer />

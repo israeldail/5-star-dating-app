@@ -7,7 +7,14 @@
 */
 
 * {
-  margin: 0;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+#loginButton {
+  position: absolute;
+  right: 10rem;
 }
 
 #wrapper {
@@ -18,7 +25,7 @@
 
 #nav {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   left: 5px;
 }
 
@@ -179,6 +186,7 @@ body {
 .logo {
   font-family: "Edu VIC WA NT Beginner", cursive;
   margin-left: 15rem;
+  height: 3rem;
 }
 
 .navbar {

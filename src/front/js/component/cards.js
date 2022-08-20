@@ -21,16 +21,6 @@ export const Cards = (props) => {
   const onLike = (profile) => {
     actions.like(profile.id);
   };
-
-  // const moveToInbox = (profile) => {
-  //   if(store.waiting.includes(profile.id)) {
-  //     return console.log("request already sent");
-  //   }else{
-  //     actions.getName(profile.first_name)
-  //   }
-  // }
-
-  console.log("yoyoyoyoyoyo", store.queue);
   
   return (
     <div className="d-flex justify-content-evenly flex-column" id="threecards">
@@ -73,7 +63,6 @@ export const Cards = (props) => {
                       variant="primary"
                       onClick={() => {
                         onLike(profile);
-                        // actions.getName(profile.first_name);
                       }}
                     >
                       Request Date
@@ -84,6 +73,7 @@ export const Cards = (props) => {
             </Card>
           );
         })}
+        <Button onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})} variation="primary">Back to the top</Button>
       </Fragment>
     </div>
   );

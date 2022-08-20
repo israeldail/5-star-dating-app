@@ -18,7 +18,7 @@ export const Inbox = () => {
   console.log(store.queue);
   return (
     <div>
-      <h2 style={{ marginTop: "4rem" }}> Dates sent </h2>
+      <h2 style={{ marginTop: "4rem", textAlign: "center", fontFamily: "Poppins" }}> Dates sent </h2>
       {store.pendingDates?.map((item, index) => {
         console.log(item);
 
@@ -32,6 +32,7 @@ export const Inbox = () => {
               background: "black",
               maxHeight: "35rem",
               marginBottom: "50px",
+              margin: "auto",
               color: "white",
               boxShadow: "5px 10px #888888",
               marginTop: "5rem",
@@ -69,23 +70,31 @@ export const Inbox = () => {
                       Read reviews
                     </Button>
                   </Link>
+                  {item?.p2_accept == null ? (
                   <div style={{ fontSize: "1rem" }} className="muted-text">
                     Request Sent{" "}
                     {<FontAwesomeIcon color="green" icon={faCheck} />}
                   </div>
+                  ) : (
+                    <div style={{ fontSize: "1rem" }} className="muted-text">
+                    Accepted{" "}
+                    {<FontAwesomeIcon color="green" icon={faCheck} />}
+                  </div>
+                  )}
                 </span>
               </div>
             </Card.Body>
           </Card>
         );
       })}
-      <h2 style={{ marginTop: "17rem" }}> Pending request </h2>
+      <h2 style={{ marginTop: "17rem", textAlign: "center", fontFamily: "Poppins" }}> Pending request </h2>
 
       {store.pendingInvitations?.map((item, index) => {
         console.log(item);
         console.log(item.uuid, "date id");
         const onAccept = (item) => {
           actions?.accept(item.uuid);
+          window.location.reload(false);
         };
         const onReject = (item) => {
           actions?.reject(item.uuid);
@@ -101,6 +110,7 @@ export const Inbox = () => {
               background: "black",
               maxHeight: "35rem",
               marginBottom: "50px",
+              margin: "auto",
               color: "white",
               boxShadow: "5px 10px #888888",
               marginTop: "5rem",
