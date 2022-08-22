@@ -18,7 +18,7 @@ export const Cards = (props) => {
     actions.like(profile.id);
     window.location.reload(false);
   };
-<<<<<<< HEAD
+
 
   // const moveToInbox = (profile) => {
   //   if(store.waiting.includes(profile.id)) {
@@ -30,9 +30,9 @@ export const Cards = (props) => {
 
   console.log("yoyoyoyoyoyo", store.queue);
 
-=======
+
   
->>>>>>> ea062e5419244dc0cdee16ccb498218a6d7fea58
+
   return (
     <div className="d-flex justify-content-evenly flex-column" id="threecards">
       <Fragment>

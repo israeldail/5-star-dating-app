@@ -13,11 +13,11 @@ import { Status } from "./pages/statuspage";
 import { IntroductionPage } from "./pages/introduction";
 import { RegistrationPage } from "./pages/registration";
 import { Rating } from "./component/starRating";
-<<<<<<< HEAD
+
 import Scroll from "./component/scroll";
-=======
+
 import { Messenger } from "./component/messenger";
->>>>>>> ea062e5419244dc0cdee16ccb498218a6d7fea58
+
 
 //create your first component
 const Layout = () => {
@@ -31,7 +31,7 @@ const Layout = () => {
         <Scroll showBelow={250} />
         <Navbar1 />
 
-<<<<<<< HEAD
+
         <Routes>
           <Route element={<Login />} path="/login" />
           <Route element={<IntroductionPage />} path="/introduction" />
@@ -39,11 +39,10 @@ const Layout = () => {
           <Route element={<Home />} path="/" />
           <Route element={<Status />} path="/profile/:id" />
           <Route element={<Inbox />} path="/inbox" />
-          <Route element={<Dates />} path="/profile/:id/dates" />
           <Route element={<h1>Not found!</h1>} />
         </Routes>
         <Footer />
-=======
+
           <Routes>
             <Route element={<Home />} path="/" />
             <Route element={<IntroductionPage />} path="/introduction"/>
@@ -55,7 +54,6 @@ const Layout = () => {
           </Routes>
           <Messenger />
           <Footer />
->>>>>>> ea062e5419244dc0cdee16ccb498218a6d7fea58
       </BrowserRouter>
     </div>
   );
