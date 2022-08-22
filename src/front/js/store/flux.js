@@ -1,6 +1,7 @@
 const defaultStore = {token: null,
   profiles: [],
   person: [],
+  gender: [],
   queue: [],
   waiting: [],
   pendingDates: [],
@@ -28,6 +29,18 @@ const getState = ({ getStore, getActions, setStore }) => {
           setStore(update);
         }
       },
+
+    getGen: () => {
+      fetch(process.env.BACKEND_URL + "/api/gender", {
+        method: "GET", 
+        headers: {"Content-Type": "application/json"}
+      })
+      .then((resp) => resp.json())
+      .then((data) => setStore({ gender: data }))
+      .catch((error) =>
+        console.log("Error loading message from backend", error)
+      );
+    },
 
       getName: (first_name) => {
         const store = getStore();

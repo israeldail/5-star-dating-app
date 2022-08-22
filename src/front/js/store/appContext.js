@@ -30,6 +30,7 @@ const injectContext = (PassedComponent) => {
        **/
       state.actions.syncTokenFromSessionStorage();
       state.actions.profile();
+      state.actions.getGen()
       // state.actions.getName();
     }, []);
 

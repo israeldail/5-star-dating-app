@@ -97,7 +97,16 @@ class Date(db.Model):
             "uuid": self.uuid
         }
 
-
+class Gen(db.Model): 
+    id = db.Column(db.Integer, primary_key=True)
+    gen = db.Column(db.String(120), nullable=False)
+    genTwo = db.Column(db.String(120), nullable=False)
+    def serialize(self): 
+        return {
+            "id": self.id,
+            "gen": self.gen,
+            "genTwo": self.genTwo
+        }
 # class Matches(db.Model):
 #     __tablename__ = "matches"
 

@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, url_for, Blueprint, make_response
-from api.models import db, Profile, Date
+from api.models import db, Profile, Date, Gen
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -86,6 +86,21 @@ def handle_signup():
     }
 
     return jsonify(payload), 200
+
+@api.route("/gender", methods=['POST'])
+def select_gender():
+    payload = request.get_json()
+    choice = Gen(gen=payload["maleGen"], genTwo=payload["femaleGen"])
+    db.session.add(choice)
+    db.session.commit()
+    return "Success"
+
+@api.route("/gender", methods=['GET'])
+def get_gender():
+    gen = Gen.query.all()
+    all_gens = list(map(lambda x: x.serialize(), gen))
+
+    return jsonify(all_gens), 200
 
 
 @api.route('/profile/<int:profile_id>', methods=['GET'])

@@ -5,6 +5,7 @@ from .models import (
     db,
     Profile,
     Gender,
+    Gen,
     Date)
 from flask_admin.contrib.sqla import ModelView
 
@@ -18,6 +19,7 @@ def setup_admin(app):
     admin.add_view(ModelView(Profile, db.session))
     admin.add_view(ModelView(Gender,db.session))
     admin.add_view(ModelView(Date,db.session))
+    admin.add_view(ModelView(Gen,db.session))
 
     # You can duplicate that line to add mew models
     # admin.add_view(ModelView(YourModelName, db.session))
