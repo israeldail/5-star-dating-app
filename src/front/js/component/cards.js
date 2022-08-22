@@ -7,15 +7,10 @@ import { Carousel } from "react-bootstrap";
 import { Context } from "../store/appContext";
 
 export const Cards = (props) => {
-
-
-
-
   useEffect(() => {
     actions.getQueue();
     actions.rehydrate();
   }, []);
-
 
   const { store, actions } = useContext(Context);
   const onLike = (profile) => {
@@ -31,7 +26,7 @@ export const Cards = (props) => {
   // }
 
   console.log("yoyoyoyoyoyo", store.queue);
-  
+
   return (
     <div className="d-flex justify-content-evenly flex-column" id="threecards">
       <Fragment>
@@ -85,6 +80,9 @@ export const Cards = (props) => {
           );
         })}
       </Fragment>
+      <>
+        <button type="backToTheTop">Back to the top</button>
+      </>
     </div>
   );
 };

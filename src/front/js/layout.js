@@ -14,6 +14,7 @@ import { Status } from "./pages/statuspage";
 import { IntroductionPage } from "./pages/introduction";
 import { RegistrationPage } from "./pages/registration";
 import { Rating } from "./component/starRating";
+import Scroll from "./component/scroll";
 
 //create your first component
 const Layout = () => {
@@ -24,19 +25,20 @@ const Layout = () => {
   return (
     <div>
       <BrowserRouter basename={basename}>
-          <Navbar1 />
+        <Scroll showBelow={250} />
+        <Navbar1 />
 
-          <Routes>
-            <Route element={<Login />} path="/login" />
-            <Route element={<IntroductionPage />} path="/introduction"/>
-            <Route element={<RegistrationPage />} path="/registration"/>
-            <Route element={<Home />} path="/" />
-            <Route element={<Status />} path="/profile/:id"/>
-            <Route element={<Inbox />} path="/inbox"/>
-            <Route element={<Dates />} path="/profile/:id/dates"/>
-            <Route element={<h1>Not found!</h1>} /> 
-          </Routes>
-          <Footer />
+        <Routes>
+          <Route element={<Login />} path="/login" />
+          <Route element={<IntroductionPage />} path="/introduction" />
+          <Route element={<RegistrationPage />} path="/registration" />
+          <Route element={<Home />} path="/" />
+          <Route element={<Status />} path="/profile/:id" />
+          <Route element={<Inbox />} path="/inbox" />
+          <Route element={<Dates />} path="/profile/:id/dates" />
+          <Route element={<h1>Not found!</h1>} />
+        </Routes>
+        <Footer />
       </BrowserRouter>
     </div>
   );
