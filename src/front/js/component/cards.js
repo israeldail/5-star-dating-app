@@ -80,9 +80,6 @@ export const Cards = (props) => {
           );
         })}
       </Fragment>
-      <>
-        <button type="backToTheTop">Back to the top</button>
-      </>
     </div>
   );
 };
