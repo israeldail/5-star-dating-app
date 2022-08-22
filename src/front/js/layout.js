@@ -13,6 +13,7 @@ import { Status } from "./pages/statuspage";
 import { IntroductionPage } from "./pages/introduction";
 import { RegistrationPage } from "./pages/registration";
 import { Rating } from "./component/starRating";
+import { Messenger } from "./component/messenger";
 
 //create your first component
 const Layout = () => {
@@ -34,6 +35,7 @@ const Layout = () => {
             <Route element={<Inbox />} path="/inbox"/>
             <Route element={<h1>Not found!</h1>} /> 
           </Routes>
+          <Messenger />
           <Footer />
       </BrowserRouter>
     </div>
