@@ -10,12 +10,15 @@ export const Cards = (props) => {
   useEffect(() => {
     actions.getQueue();
     actions.rehydrate();
+    actions.pendingDates();
   }, []);
 
   const { store, actions } = useContext(Context);
   const onLike = (profile) => {
     actions.like(profile.id);
+    window.location.reload(false);
   };
+<<<<<<< HEAD
 
   // const moveToInbox = (profile) => {
   //   if(store.waiting.includes(profile.id)) {
@@ -27,6 +30,9 @@ export const Cards = (props) => {
 
   console.log("yoyoyoyoyoyo", store.queue);
 
+=======
+  
+>>>>>>> ea062e5419244dc0cdee16ccb498218a6d7fea58
   return (
     <div className="d-flex justify-content-evenly flex-column" id="threecards">
       <Fragment>
@@ -68,7 +74,6 @@ export const Cards = (props) => {
                       variant="primary"
                       onClick={() => {
                         onLike(profile);
-                        // actions.getName(profile.first_name);
                       }}
                     >
                       Request Date
@@ -79,6 +84,7 @@ export const Cards = (props) => {
             </Card>
           );
         })}
+        <Button onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})} variation="primary">Back to the top</Button>
       </Fragment>
     </div>
   );

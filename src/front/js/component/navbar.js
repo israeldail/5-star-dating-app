@@ -25,37 +25,50 @@ export const Navbar1 = () => {
   const handleClick2 = () => {
     navigate("/login");
   };
-  console.log("lets go",store.profile);
+
+
+  console.log("lets go", store.profile);
   return (
-    <Navbar 
+    <Navbar
       bg="light"
       expand="lg"
       className="navbar"
       style={{ height: "100px" }}
     >
-      <Container fluid style={{ background: "#D98B8B" }}>
-        <div className="container">
+      <Container id="navlink" fluid style={{ background: "#D98B8B" }}>
+        <div className="container" style={{width: "65%"}}>
           <Navbar.Brand
-            style={{ color: "black", fontSize: 50, justify: "center" }}
+            style={{ color: "black", fontSize: 50, justify: "center"}}
           >
+            <Link to="/">
             <img
               src={logo}
               height="100"
-              width="200"
+              width="150"
               style={{ marginLeft: "85px" }}
             />
+            </Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
         </div>
         <Navbar.Collapse id="navbarScroll">
           <Nav
             className="me-auto my-2 my-lg-0"
-            style={{ maxHeight: "100px" }}
+            style={{ maxHeight: "100px"}}
             id="nav"
           >
             {token && (
               <div id="inboxButton">
-                <div id="userName">Welcome, {store.profile.first_name}</div>
+                <div
+                  style={{
+                    fontFamily: "Poppins",
+                    fontSize: "28px",
+                    justifyContent: "space-around",
+                  }}
+                  id="userName"
+                >
+                <img style={{borderRadius: "30%", height: "3rem", width: "3rem"}} src={store.profile.image} />  Welcome, {store.profile.first_name} 
+                </div>
                 <i
                   onClick={handleClick}
                   className="fa-solid fa-envelope fa-2xl"
@@ -65,6 +78,7 @@ export const Navbar1 = () => {
             {!token ? (
               <div id="loginButton">
                 <i
+                  
                   className="fa-solid fa-right-to-bracket fa-2xl"
                   onClick={handleClick2}
                 ></i>
