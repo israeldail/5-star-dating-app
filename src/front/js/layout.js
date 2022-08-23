@@ -42,18 +42,6 @@ const Layout = () => {
           <Route element={<h1>Not found!</h1>} />
         </Routes>
         <Footer />
-
-          <Routes>
-            <Route element={<Home />} path="/" />
-            <Route element={<IntroductionPage />} path="/introduction"/>
-            <Route element={<RegistrationPage />} path="/registration"/>
-            <Route element={<Login />} path="/login" />
-            <Route element={<Status />} path="/profile/:id"/>
-            <Route element={<Inbox />} path="/inbox"/>
-            <Route element={<h1>Not found!</h1>} /> 
-          </Routes>
-          <Messenger />
-          <Footer />
       </BrowserRouter>
     </div>
   );
