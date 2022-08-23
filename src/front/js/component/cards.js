@@ -40,9 +40,9 @@ export const Cards = (props) => {
           return (
             <Card
               style={{
-                width: "50rem",
+                width: "30rem",
                 background: "black",
-                maxHeight: "85rem",
+                maxHeight: "65rem",
                 marginBottom: "50px",
                 color: "white",
                 boxShadow: "5px 10px #888888",

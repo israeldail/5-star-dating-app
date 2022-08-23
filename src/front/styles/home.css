@@ -170,6 +170,19 @@
   font-size: 15px;
 }
 
+#searchbar {
+  position: absolute;
+  height: 2rem;
+  width: 20rem;
+  background: rgba(255,255,255, 0.8);
+  top: 4rem;
+  left: 45rem;
+  border-radius: 20px;
+  border-color: black ridge 1px;
+  text-align: left;
+  padding-left: 10px;
+}
+
 body {
   width: 100%;
   background-color: #fffacd;

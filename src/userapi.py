@@ -16,7 +16,12 @@ with app.app_context():
             image_url=user['picture']['large'], 
             bio="this is a random bio", 
             traits_and_interests="random",
-            age=user['dob']['age'])
+            age=user['dob']['age'],
+            city=user['location']['city'],
+            country=user['location']['country'],
+            zip_code=user['location']['postcode']
+            )
+            
             
         db.session.add(user_profile)
     db.session.commit()

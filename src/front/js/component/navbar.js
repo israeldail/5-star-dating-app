@@ -49,6 +49,7 @@ export const Navbar1 = () => {
             />
             </Link>
           </Navbar.Brand>
+          <input placeholder="Search City, Country, Zip" id="searchbar"></input>
           <Navbar.Toggle aria-controls="navbarScroll" />
         </div>
         <Navbar.Collapse id="navbarScroll">

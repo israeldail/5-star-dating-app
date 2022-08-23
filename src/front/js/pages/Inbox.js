@@ -28,7 +28,7 @@ export const Inbox = () => {
         return (
           <Card
             style={{
-              width: "50%",
+              width: "25%",
               background: "black",
               maxHeight: "35rem",
               marginBottom: "50px",

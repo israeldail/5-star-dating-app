@@ -30,6 +30,9 @@ class Profile(db.Model):
     bio = db.Column(db.String(250),  nullable=True)
     traits_and_interests = db.Column(db.String(250),  nullable=True)
     age = db.Column(db.Integer, nullable=True)
+    city = db.Column(db.String(80))
+    country = db.Column(db.String(80))
+    zip_code = db.Column(db.Integer)
 
     gender_options = db.relationship(
         "Gender", backref="gender", uselist=False
