@@ -98,6 +98,7 @@ export const Inbox = () => {
         };
         const onReject = (item) => {
           actions?.reject(item.uuid);
+          window.location.reload(false);
         };
         let profile = store.queue.find(
           (profile, i) => item.p1_id == profile.id
@@ -105,16 +106,16 @@ export const Inbox = () => {
 
         return (
           <Card
-            style={{
-              width: "50%",
-              background: "black",
-              maxHeight: "35rem",
-              marginBottom: "50px",
-              margin: "auto",
-              color: "white",
-              boxShadow: "5px 10px #888888",
-              marginTop: "5rem",
-            }}
+          style={{
+            width: "25%",
+            background: "black",
+            maxHeight: "35rem",
+            marginBottom: "50px",
+            margin: "auto",
+            color: "white",
+            boxShadow: "5px 10px #888888",
+            marginTop: "5rem",
+          }}
             key={index}
           >
             <Card.Img
