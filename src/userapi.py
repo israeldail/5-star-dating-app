@@ -19,7 +19,7 @@ with app.app_context():
             age=user['dob']['age'],
             city=user['location']['city'],
             country=user['location']['country'],
-            zip_code=user['location']['postcode']
+            zip_code=user['location']['postcode'],
             )
             
             

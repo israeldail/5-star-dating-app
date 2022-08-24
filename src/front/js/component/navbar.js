@@ -13,6 +13,7 @@ import logo from "../../img/new_logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const Navbar1 = () => {
+
   const { store, actions } = useContext(Context);
 
   const token = sessionStorage.getItem("token");
@@ -49,7 +50,12 @@ export const Navbar1 = () => {
             />
             </Link>
           </Navbar.Brand>
-          <input placeholder="Search City, Country, Zip" id="searchbar"></input>
+          {token && (
+             <input placeholder="Search City, Country, Zip" id="searchbar"></input>
+
+             
+          )}
+         
           <Navbar.Toggle aria-controls="navbarScroll" />
         </div>
         <Navbar.Collapse id="navbarScroll">

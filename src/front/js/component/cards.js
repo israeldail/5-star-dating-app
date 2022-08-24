@@ -60,7 +60,7 @@ export const Cards = (props) => {
                     </div>
                   </div>
                 </div>
-                <Card.Text>{profile.bio}</Card.Text>
+                <Card.Text>{profile.city}, {profile.country} {profile.zip_code}</Card.Text>
                 <Card.Text>{profile.bio}</Card.Text>
                 <div id="bottomcontainer">
                   <span className="d-flex justify-content-evenly float-left">
