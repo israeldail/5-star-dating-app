@@ -7,7 +7,14 @@
 */
 
 * {
-  margin: 0;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+#loginButton {
+  position: absolute;
+  right: 10rem;
 }
 
 #wrapper {
@@ -18,7 +25,7 @@
 
 #nav {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   left: 5px;
 }
 
@@ -163,6 +170,19 @@
   font-size: 15px;
 }
 
+#searchbar {
+  position: absolute;
+  height: 2rem;
+  width: 20rem;
+  background: rgba(255,255,255, 0.8);
+  top: 4rem;
+  left: 45rem;
+  border-radius: 20px;
+  border-color: black ridge 1px;
+  text-align: left;
+  padding-left: 10px;
+}
+
 body {
   width: 100%;
   background-color: #fffacd;
@@ -174,11 +194,13 @@ body {
   left: 0;
   position: relative;
   width: 100%;
+  z-index: -10;
 }
 
 .logo {
   font-family: "Edu VIC WA NT Beginner", cursive;
   margin-left: 15rem;
+  height: 3rem;
 }
 
 .navbar {
@@ -312,23 +334,31 @@ body {
 
 #introPic1 {
   position: relative;
-  width: 115%;
   height: 100%;
   margin-left: 100;
   z-index: -10;
 }
 #introPic2 {
   position: relative;
-  width: 156%;
   height: 100%;
   margin-left: 100;
   z-index: -10;
+
+
 }
+
+
+#backtobutton{
+  position: absolute;
+  right: 45rem;
+}
+
+
 .signupcontainer {
   position: absolute;
-  top: 10rem;
-  left: 5rem;
-  height: 35rem;
+  top: 15rem;
+  left: 35rem;
+  height: 45rem;
   width: 50rem;
   background: rgba(227, 171, 171, 0.54);
   text-align: center;
@@ -338,9 +368,31 @@ body {
   display: flex;
   height: 100%;
 }
-/* .submit {
+
+.submit {
   margin: auto;
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
-} */
+  margin-top: 5rem;
+}
+
+.messengerButton {
+  position: absolute;
+  right: 5rem;
+  bottom: 5rem;
+  background-color: black;
+  height: 100px;
+  width: 100px;
+  border-radius: 15%;
+  float: right;
+}
+
+.messengerBody {
+  position: absolute;
+  bottom: 10rem;
+  right: 10rem;
+  background-color: black;
+  height: 400px;
+  width: 300px;
+}

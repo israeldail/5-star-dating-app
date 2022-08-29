@@ -10,12 +10,15 @@ export const Cards = (props) => {
   useEffect(() => {
     actions.getQueue();
     actions.rehydrate();
+    actions.pendingDates();
   }, []);
 
   const { store, actions } = useContext(Context);
   const onLike = (profile) => {
     actions.like(profile.id);
+    window.location.reload(false);
   };
+
 
   // const moveToInbox = (profile) => {
   //   if(store.waiting.includes(profile.id)) {
@@ -27,6 +30,9 @@ export const Cards = (props) => {
 
   console.log("yoyoyoyoyoyo", store.queue);
 
+
+  
+
   return (
     <div className="d-flex justify-content-evenly flex-column" id="threecards">
       <Fragment>
@@ -34,9 +40,9 @@ export const Cards = (props) => {
           return (
             <Card
               style={{
-                width: "50rem",
+                width: "30rem",
                 background: "black",
-                maxHeight: "85rem",
+                maxHeight: "65rem",
                 marginBottom: "50px",
                 color: "white",
                 boxShadow: "5px 10px #888888",
@@ -54,7 +60,7 @@ export const Cards = (props) => {
                     </div>
                   </div>
                 </div>
-                <Card.Text>{profile.bio}</Card.Text>
+                <Card.Text>{profile.city}, {profile.country} {profile.zip_code}</Card.Text>
                 <Card.Text>{profile.bio}</Card.Text>
                 <div id="bottomcontainer">
                   <span className="d-flex justify-content-evenly float-left">
@@ -68,7 +74,6 @@ export const Cards = (props) => {
                       variant="primary"
                       onClick={() => {
                         onLike(profile);
-                        // actions.getName(profile.first_name);
                       }}
                     >
                       Request Date
@@ -79,6 +84,7 @@ export const Cards = (props) => {
             </Card>
           );
         })}
+        <Button onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})} variation="primary">Back to the top</Button>
       </Fragment>
     </div>
   );

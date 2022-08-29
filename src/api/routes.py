@@ -77,7 +77,8 @@ def handle_signup():
         first_name=response_body["first_name"],
         last_name=response_body["last_name"],
         bio=response_body["bio"],
-        age=response_body["age"] )
+        age=response_body["age"],
+     )
     db.session.add(profile)
     db.session.commit()
 
@@ -190,3 +191,6 @@ def get_profile():
    
 
     return jsonify(profile.serialize()), 200
+
+
+

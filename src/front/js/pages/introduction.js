@@ -21,28 +21,32 @@ export const IntroductionPage = () => {
           </div>
           <div id="sexButton">
             <div id="genderButtonLeft">
-              <button
-                type="button"
+              <input
+                type="radio"
+                value="Male"
+                name="radio"
+                onChange={(e) => setMaleGen(e.target.value)}
                 style={{
                   borderRadius: "5px",
                   background: "#D98B8B",
                   borderColor: "#D98B8B",
                   width: "7rem",
                 }}
-              >
-                Male
-              </button>
-              <button
-                type="button"
+              />
+              Male
+              <input
+                type="radio"
+                value="Female"
+                name="radio"
+                onChange={(e) => setFemaleGen(e.target.value)}
                 style={{
                   borderRadius: "5px",
                   background: "#D98B8B",
                   borderColor: "#D98B8B",
                   width: "7rem",
                 }}
-              >
-                Female
-              </button>
+              />
+              Female
             </div>
             <div id="genderButtonRight">
               <input
@@ -57,7 +61,11 @@ export const IntroductionPage = () => {
                   width: "7rem",
                 }}
               />
+
+              Male
+
                 Male
+
               <input
                 type="radio"
                 value="Female"
@@ -70,7 +78,11 @@ export const IntroductionPage = () => {
                   width: "7rem",
                 }}
               />
+
+              Female
+
                 Female
+
             </div>
           </div>
           <button onClick={() => {

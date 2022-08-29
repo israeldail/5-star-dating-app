@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import IconButton from "@material-ui/core/IconButton";
 
 const useStyles = makeStyles((theme) => ({
@@ -58,7 +57,6 @@ const Scroll = ({ showBelow }) => {
           aria-label="to top"
           component="span"
         >
-          <ExpandLessIcon />
         </IconButton>
       )}
     </div>
