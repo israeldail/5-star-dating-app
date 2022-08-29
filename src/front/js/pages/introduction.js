@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import couples from "../../img/couple.jpeg";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 export const IntroductionPage = () => {
+  const [maleGen, setMaleGen] = useState("")
+  const [femaleGen, setFemaleGen] = useState("")
+  const { store, actions } = useContext(Context);
+  console.log(store, "Gender data")
   return (
     <div id="introduction">
       <img id="introductionPic" src={couples} />
@@ -11,6 +16,7 @@ export const IntroductionPage = () => {
         <form>
           <div id="sex">
             <h3>I am:</h3>
+       
             <h3>I am looking for:</h3>
           </div>
           <div id="sexButton">
@@ -55,7 +61,11 @@ export const IntroductionPage = () => {
                   width: "7rem",
                 }}
               />
+
               Male
+
+                Male
+
               <input
                 type="radio"
                 value="Female"
@@ -68,9 +78,20 @@ export const IntroductionPage = () => {
                   width: "7rem",
                 }}
               />
+
               Female
+
+                Female
+
             </div>
           </div>
+          <button onClick={() => {
+            fetch(process.env.BACKEND_URL + "/api/gender", {
+              method: "POST",
+              headers: {"Content-Type": "application/json"},
+              body: JSON.stringify({maleGen, femaleGen})
+            })
+          }}>Save</button>
           <div id="joinSection">
             <Link to={"/registration"}>
               <button

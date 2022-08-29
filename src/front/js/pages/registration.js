@@ -6,27 +6,58 @@ import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 
+
+import { useNavigate } from "react-router-dom";
+
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
 
 export const RegistrationPage = () => {
   const navigate = useNavigate();
   const { store, actions } = useContext(Context);
+
   const handleFormSubmit = (event) => {
     event.preventDefault();
     actions.signup(email, password, firstName, lastName, bio, age);
     navigate('/login')
   };
+
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [bio, setBio] = useState("");
   const [age, setAge] = useState("");
-
+  const navigate = useNavigate();
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    if (
+      email == "" ||
+      password == "" ||
+      firstName == "" ||
+      lastName == "" ||
+      bio == "" ||
+      age == ""
+    ) {
+      alert("Save fields cannot be blank");
+    } else {
+      actions.signup(email, password, firstName, lastName, bio, age);
+      navigate("/login");
+    }
+  };
   return (
     <div>
+
       <h1 style={{textAlign: "center", fontFamily: "serif"}}>Sign Up</h1>
+
+      <h1>Sign Up</h1>
+      Gender:      <div>GENDER: {store.gender.map((item, index)=> {
+              return (
+                <div key={index}>{item.gen || item.genTwo}</div>
+              )
+            })}</div>
+
       <div className="mainintro">
         <div className="introPic1">
           <img id="introPic1" src={couple1} height="1000" />
